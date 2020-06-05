@@ -70,7 +70,10 @@ function getPublic(req, res) {
     const applicationVersion = JSON.parse(packageJson).version || 0;
 
     // The file build.info is created and populated during build time in GitHub
-    const buildInfo = fs.readFileSync('./build.info');
+    const buildInfoPath = path.join(__dirname, '.', 'build.info');
+
+    const buildInfo = fs.readFileSync(buildInfoPath, 'utf8');
+
     const branch = JSON.parse(buildInfo).branch || 0;
     const commitId = JSON.parse(buildInfo).commit || 0;
     const buildDate = JSON.parse(buildInfo).buildDate || 0;

@@ -5,9 +5,10 @@ const frameguard = require('frameguard');
 const hsts = require('hsts');
 const ieNoOpen = require('ienoopen');
 const noSniff = require('dont-sniff-mimetype');
+const path = require('path');
 
-const helmetFilePath = './helmet/settings.json';
-const helmetoptions = fs.readFileSync(helmetFilePath);
+const helmetFilePath = path.join(__dirname, '.', 'helmet', 'settings.json');
+const helmetoptions = fs.readFileSync(helmetFilePath, 'utf8');
 
 /**
  * helmet plugin configuration

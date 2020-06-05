@@ -5,6 +5,7 @@ const https = require('https');
 const http = require('http');
 const logger = require('./logger');
 const helmet = require('./helmet');
+const path = require('path');
 
 const app = express();
 
@@ -22,11 +23,11 @@ const port = process.env.UI_PORT || 3000;
 //process.on('SIGTERM', (onSigterm) => {
 //  logger.info(`Got SIGTERM ${onSigterm}(docker container stop). Graceful shutdown `, new Date().toISOString());
 // })
-
+/*
 process.on('beforeExit', (code) => {
   logger.info(`Process beforeExit event with code: ${code}`);
 });
-
+*/
 process.on('exit', (code) => {
   logger.info(`About to exit with code: ${code}`);
 });
@@ -52,11 +53,14 @@ process.on('warning', (warning) => {
   logger.warn(`Warning Stack: ${warning.stack}`);
 });
 
+const keyFilePath = path.join(__dirname, '.', 'keys', 'tls', 'key.pem');
+const certFilePath = path.join(__dirname, '.', 'keys', 'tls', 'cert.pem');
+
 async function main() {
   const options = {
     passphrase: 'Ggbkhsymz@99',
-    key: fs.readFileSync('./keys/tls/key.pem'),
-    cert: fs.readFileSync('./keys/tls/cert.pem'),
+    key: fs.readFileSync(keyFilePath, 'utf8'),
+    cert: fs.readFileSync(certFilePath, 'utf8'),
   };
 
   /**
@@ -92,11 +96,14 @@ async function main() {
   }
 
   try {
-    const packageJson = fs.readFileSync('./package.json');
+    const packageJsonPath = path.join(__dirname, '..', 'package.json');
+    const packageJson = fs.readFileSync(packageJsonPath, 'utf-8');
     const applicationVersion = JSON.parse(packageJson).version || 0;
 
     // The file build.info is created and populated during build time in GitHub
-    const buildInfo = fs.readFileSync('./build.info');
+    
+    const buildInfoPath = path.join(__dirname, '.', 'build.info');
+    const buildInfo = fs.readFileSync(buildInfoPath, 'utf-8');
     const branch = JSON.parse(buildInfo).branch || 0;
     const commitId = JSON.parse(buildInfo).commit || 0;
     const buildDate = JSON.parse(buildInfo).buildDate || 0;
@@ -104,10 +111,9 @@ async function main() {
     const commitLogId = JSON.parse(buildInfo).commitLogId || 0;
 
     logger.info(`Server is running version ${applicationVersion}, ${commitLogId}, ${branch}, ${buildId}, ${commitId}, ${buildDate}` )
-
+    return http
   } catch (err) {
     logger.error(err);
-    res.send(err);
   }
 
 }
@@ -115,4 +121,9 @@ async function main() {
 /**
  * main function which is use for running the server
  */
-main().catch(error => logger.error('error: ', error));
+main().catch(error => logger.error('error main.catch', error));
+
+module.exports = {
+  main: main
+}
+
