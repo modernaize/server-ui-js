@@ -18,7 +18,7 @@ COPY . .
 
 RUN npm i
 RUN npm i --only=dev
-RUN npm run build
+# RUN npm run build
 
 # === Stage 2: - Build server ===
 FROM node:12.16.1-alpine AS final-stage
@@ -32,7 +32,7 @@ RUN mkdir /home/node/app/ && chown -R node:node /home/node/app
 WORKDIR /home/node/app
 
 # Copy the built UI
-COPY --from=build-stage dist dist
+# COPY --from=build-stage dist dist
 
 COPY --chown=node:node server ./
 
