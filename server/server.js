@@ -12,7 +12,6 @@ const app = express();
 const routes = require('./routes');
 
 const tlsProvided = process.env.TLS_CERT_PROVIDED || false;
-const port = process.env.UI_PORT || 3000;
 
 // quit on ctrl-c when running docker in terminal
 // process.on('SIGINT', (onSigint) => {
@@ -58,7 +57,7 @@ const certFilePath = path.join(__dirname, '.', 'keys', 'tls', 'cert.pem');
 
 function main(serverOptions) {
   const defaultOptions = {
-    port: serverOptions ? serverOptions.port : port,
+    port: serverOptions ? serverOptions.port : process.env.UI_PORT || 3000,
   };
 
   const options = {
