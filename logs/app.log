@@ -18174,3 +18174,408 @@ TypeError: jsonServer.create is not a function
 2020-06-04 20:36:42 [32minfo[39m: Node server started without a TLS certificate on port : 3000
 2020-06-05 09:53:36 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
 2020-06-05 09:53:36 [32minfo[39m: Node server started without a TLS certificate on port : 3000
+2020-06-12 15:59:23 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 15:59:23 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at Server.listen (net.js:1445:7)
+    at main (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:97:28)
+    at Object.<anonymous> (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:128:1)
+    at Module._compile (internal/modules/cjs/loader.js:1151:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1171:10)
+    at Module.load (internal/modules/cjs/loader.js:1000:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:899:14)
+    at Module.require (internal/modules/cjs/loader.js:1040:19)
+2020-06-12 15:59:23 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use :::3000
+2020-06-12 15:59:23 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 15:59:23 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 15:59:23 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 15:59:23 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:00:24 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:00:24 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at Server.listen (net.js:1445:7)
+    at main (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:97:28)
+    at Object.<anonymous> (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:128:1)
+    at Module._compile (internal/modules/cjs/loader.js:1151:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1171:10)
+    at Module.load (internal/modules/cjs/loader.js:1000:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:899:14)
+    at Module.require (internal/modules/cjs/loader.js:1040:19)
+2020-06-12 16:00:24 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use :::3000
+2020-06-12 16:00:24 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:00:24 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:00:24 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:00:24 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:00:45 [31merror[39m: error main.catchCannot read property 'port' of undefined
+2020-06-12 16:00:45 [32minfo[39m: About to exit with code: 0
+2020-06-12 16:01:12 [31merror[39m: error main.catchCannot read property 'port' of undefined
+2020-06-12 16:01:12 [32minfo[39m: About to exit with code: 0
+2020-06-12 16:08:07 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:08:07 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at Server.listen (net.js:1445:7)
+    at main (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:97:28)
+    at Object.<anonymous> (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:128:1)
+    at Module._compile (internal/modules/cjs/loader.js:1151:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1171:10)
+    at Module.load (internal/modules/cjs/loader.js:1000:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:899:14)
+    at Module.require (internal/modules/cjs/loader.js:1040:19)
+2020-06-12 16:08:07 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use :::3000
+2020-06-12 16:08:07 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:08:07 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:08:07 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:08:07 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:08:24 [31merror[39m: error main.catchCannot read property 'port' of undefined
+2020-06-12 16:08:24 [32minfo[39m: About to exit with code: 0
+2020-06-12 16:08:35 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:08:35 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at Server.listen (net.js:1445:7)
+    at main (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:97:28)
+    at Object.<anonymous> (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:128:1)
+    at Module._compile (internal/modules/cjs/loader.js:1151:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1171:10)
+    at Module.load (internal/modules/cjs/loader.js:1000:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:899:14)
+    at Module.require (internal/modules/cjs/loader.js:1040:19)
+2020-06-12 16:08:35 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use :::3000
+2020-06-12 16:08:35 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:08:35 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:08:35 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:08:35 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:11:00 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:11:00 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at Server.listen (net.js:1445:7)
+    at main (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:97:28)
+    at Object.<anonymous> (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:131:1)
+    at Module._compile (internal/modules/cjs/loader.js:1151:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1171:10)
+    at Module.load (internal/modules/cjs/loader.js:1000:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:899:14)
+    at Module.require (internal/modules/cjs/loader.js:1040:19)
+2020-06-12 16:11:00 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use :::3000
+2020-06-12 16:11:00 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:11:00 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:11:00 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:11:00 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:11:17 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:11:17 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at Server.listen (net.js:1445:7)
+    at main (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:97:28)
+    at Object.<anonymous> (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:131:1)
+    at Module._compile (internal/modules/cjs/loader.js:1151:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1171:10)
+    at Module.load (internal/modules/cjs/loader.js:1000:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:899:14)
+    at Module.require (internal/modules/cjs/loader.js:1040:19)
+2020-06-12 16:11:17 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use :::3000
+2020-06-12 16:11:17 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:11:17 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:11:17 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:11:17 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:13:01 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:13:01 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at Server.listen (net.js:1445:7)
+    at main (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:99:28)
+    at Object.<anonymous> (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:130:1)
+    at Module._compile (internal/modules/cjs/loader.js:1151:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1171:10)
+    at Module.load (internal/modules/cjs/loader.js:1000:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:899:14)
+    at Module.require (internal/modules/cjs/loader.js:1040:19)
+2020-06-12 16:13:01 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use :::3000
+2020-06-12 16:13:01 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:13:01 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:13:01 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:13:01 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:19:59 [32minfo[39m: About to exit with code: 0
+2020-06-12 16:20:13 [32minfo[39m: About to exit with code: 0
+2020-06-12 16:22:41 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:22:41 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at Server.listen (net.js:1445:7)
+    at main (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:97:28)
+    at Object.<anonymous> (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:128:1)
+    at Module._compile (internal/modules/cjs/loader.js:1151:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1171:10)
+    at Module.load (internal/modules/cjs/loader.js:1000:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:899:14)
+    at Module.require (internal/modules/cjs/loader.js:1040:19)
+2020-06-12 16:22:41 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use :::3000
+2020-06-12 16:22:41 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:22:41 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:22:41 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:22:41 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:24:34 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:24:34 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at Server.listen (net.js:1445:7)
+    at main (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:97:28)
+    at Object.<anonymous> (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:128:1)
+    at Module._compile (internal/modules/cjs/loader.js:1151:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1171:10)
+    at Module.load (internal/modules/cjs/loader.js:1000:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:899:14)
+    at Module.require (internal/modules/cjs/loader.js:1040:19)
+2020-06-12 16:24:34 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use :::3000
+2020-06-12 16:24:34 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:24:34 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:24:34 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:24:34 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:25:28 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:25:28 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at Server.listen (net.js:1445:7)
+    at Object.main [as create] (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:97:28)
+    at main (/Users/lalitjoshi/Workspace/React/lo-js-server/test.js:8:35)
+    at Object.<anonymous> (/Users/lalitjoshi/Workspace/React/lo-js-server/test.js:12:1)
+    at Module._compile (internal/modules/cjs/loader.js:1151:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1171:10)
+    at Module.load (internal/modules/cjs/loader.js:1000:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:899:14)
+2020-06-12 16:25:28 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use :::3000
+2020-06-12 16:25:28 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:25:28 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:25:28 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:25:28 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:26:10 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:26:10 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at Server.listen (net.js:1445:7)
+    at Object.main [as create] (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:97:28)
+    at main (/Users/lalitjoshi/Workspace/React/lo-js-server/test.js:8:35)
+    at Object.<anonymous> (/Users/lalitjoshi/Workspace/React/lo-js-server/test.js:12:1)
+    at Module._compile (internal/modules/cjs/loader.js:1151:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1171:10)
+    at Module.load (internal/modules/cjs/loader.js:1000:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:899:14)
+2020-06-12 16:26:10 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use :::3000
+2020-06-12 16:26:10 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:26:10 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:26:10 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:26:10 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:26:42 [32minfo[39m: About to exit with code: 0
+2020-06-12 16:26:51 [32minfo[39m: About to exit with code: 0
+2020-06-12 16:27:33 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:27:33 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at Server.listen (net.js:1445:7)
+    at Object.main [as create] (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:97:28)
+    at main (/Users/lalitjoshi/Workspace/React/lo-js-server/test.js:8:35)
+    at Object.<anonymous> (/Users/lalitjoshi/Workspace/React/lo-js-server/test.js:12:1)
+    at Module._compile (internal/modules/cjs/loader.js:1151:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1171:10)
+    at Module.load (internal/modules/cjs/loader.js:1000:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:899:14)
+2020-06-12 16:27:33 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use :::3000
+2020-06-12 16:27:33 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:27:33 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:27:33 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:27:33 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:27:48 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:27:48 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3000
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at Server.listen (net.js:1445:7)
+    at Object.main [as create] (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:97:28)
+    at main (/Users/lalitjoshi/Workspace/React/lo-js-server/test.js:8:35)
+    at Object.<anonymous> (/Users/lalitjoshi/Workspace/React/lo-js-server/test.js:12:1)
+    at Module._compile (internal/modules/cjs/loader.js:1151:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1171:10)
+    at Module.load (internal/modules/cjs/loader.js:1000:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:899:14)
+2020-06-12 16:27:48 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use :::3000
+2020-06-12 16:27:48 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:27:48 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:27:48 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:27:48 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:28:12 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:28:12 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use :::3001
+Error: listen EADDRINUSE: address already in use :::3001
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at Server.listen (net.js:1445:7)
+    at Object.main [as create] (/Users/lalitjoshi/Workspace/React/lo-js-server/server/server.js:97:28)
+    at main (/Users/lalitjoshi/Workspace/React/lo-js-server/test.js:8:35)
+    at Object.<anonymous> (/Users/lalitjoshi/Workspace/React/lo-js-server/test.js:12:1)
+    at Module._compile (internal/modules/cjs/loader.js:1151:30)
+    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1171:10)
+    at Module.load (internal/modules/cjs/loader.js:1000:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:899:14)
+2020-06-12 16:28:12 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use :::3001
+2020-06-12 16:28:12 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:28:12 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:28:12 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:28:12 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:28:26 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:28:26 [32minfo[39m: Node server started without a TLS certificate on port : 3000
+2020-06-12 16:28:26 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:28:26 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:28:26 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:28:44 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:28:44 [32minfo[39m: Node server started without a TLS certificate on port : 3000
+2020-06-12 16:28:44 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:28:44 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:28:44 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:29:01 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:29:01 [32minfo[39m: Node server started without a TLS certificate on port : 3008
+2020-06-12 16:29:01 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:29:01 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:29:01 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:29:21 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:29:21 [32minfo[39m: Node server started without a TLS certificate on port : 3003
+2020-06-12 16:29:21 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:29:21 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:29:21 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:29:43 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:29:43 [32minfo[39m: Node server started without a TLS certificate on port : 3003
+2020-06-12 16:30:50 [32minfo[39m: About to exit with code: 0
+2020-06-12 16:31:07 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:31:07 [32minfo[39m: Node server started without a TLS certificate on port : 3003
+2020-06-12 16:31:07 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:31:07 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:31:07 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:35:03 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:35:03 [32minfo[39m: Node server started without a TLS certificate on port : 3003
+2020-06-12 16:35:03 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:35:03 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:35:03 [34mdebug[39m: Exception origin: uncaughtException
+2020-06-12 16:54:07 [32minfo[39m: Server is running version 2020.2.0, 1, Master, 110, 871a023, Fri Mar 27 17:47:23 UTC 2020
+2020-06-12 16:54:07 [32minfo[39m: Node server started without a TLS certificate on port : 3003
+2020-06-12 16:54:07 [31merror[39m: uncaughtException: listen EADDRINUSE: address already in use 127.0.0.1:9991
+Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+    at Server.setupListenHandle [as _listen2] (net.js:1309:16)
+    at listenInCluster (net.js:1357:12)
+    at doListen (net.js:1496:7)
+    at processTicksAndRejections (internal/process/task_queues.js:85:21)
+2020-06-12 16:54:07 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
+2020-06-12 16:54:07 [34mdebug[39m: Exception origin: uncaughtException

@@ -12,7 +12,6 @@ const app = express();
 const routes = require('./routes');
 
 const tlsProvided = process.env.TLS_CERT_PROVIDED || false;
-const port = process.env.UI_PORT || 3000;
 
 // quit on ctrl-c when running docker in terminal
 // process.on('SIGINT', (onSigint) => {
@@ -56,7 +55,11 @@ process.on('warning', (warning) => {
 const keyFilePath = path.join(__dirname, '.', 'keys', 'tls', 'key.pem');
 const certFilePath = path.join(__dirname, '.', 'keys', 'tls', 'cert.pem');
 
-async function main() {
+function main(serverOptions) {
+  const defaultOptions = {
+    port: serverOptions ? serverOptions.port : process.env.UI_PORT || 3000,
+  };
+
   const options = {
     passphrase: 'Ggbkhsymz@99',
     key: fs.readFileSync(keyFilePath, 'utf8'),
@@ -75,8 +78,8 @@ async function main() {
   app.set('json spaces', 4);
 
   // Before all routes
-  app.use(require("api-express-exporter")()); 
-  
+  app.use(require('api-express-exporter')());
+
   /**
    * bind all our routes to routes.js
    */
@@ -86,12 +89,12 @@ async function main() {
    * process.env.TLS_CERT_PROVIDED Boolean but it is always a string
   */
   if (tlsProvided === 'true') {
-    https.createServer(options, app).listen(port, () => {
-      logger.info(`Node server started with embedded TLS certificates on port : ${port}`);
+    https.createServer(options, app).listen(defaultOptions.port, () => {
+      logger.info(`Node server started with embedded TLS certificates on port : ${defaultOptions.port}`);
     });
   } else {
-    http.createServer(app).listen(port, () => {
-      logger.info(`Node server started without a TLS certificate on port : ${port}`);
+    http.createServer(app).listen(defaultOptions.port, () => {
+      logger.info(`Node server started without a TLS certificate on port : ${defaultOptions.port}`);
     });
   }
 
@@ -101,7 +104,6 @@ async function main() {
     const applicationVersion = JSON.parse(packageJson).version || 0;
 
     // The file build.info is created and populated during build time in GitHub
-    
     const buildInfoPath = path.join(__dirname, '.', 'build.info');
     const buildInfo = fs.readFileSync(buildInfoPath, 'utf-8');
     const branch = JSON.parse(buildInfo).branch || 0;
@@ -118,12 +120,5 @@ async function main() {
 
 }
 
-/**
- * main function which is use for running the server
- */
-main().catch(error => logger.error('error main.catch', error));
-
-module.exports = {
-  main: main
-}
+module.exports.create = main;
 
