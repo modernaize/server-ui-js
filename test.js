@@ -2,7 +2,23 @@
 async function main() {
   const loServer = require('./server/server');
   const options = {
-    port: 3003,
+    server: {
+      port: 3003
+    },
+    helmet: {
+      use: true,
+      options: {
+        x_powered_by: true,
+        frameguard: true, 
+        dnsPrefetchControl: true,
+        hsts: true,
+        ieNoOpen: true,
+        noSniff: true
+      }
+    },
+    prometheus: {
+      use: true
+    }
   };
   const server = await loServer.create(options);
 

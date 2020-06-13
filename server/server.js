@@ -13,20 +13,6 @@ const routes = require('./routes');
 
 const tlsProvided = process.env.TLS_CERT_PROVIDED || false;
 
-// quit on ctrl-c when running docker in terminal
-// process.on('SIGINT', (onSigint) => {
-//	logger.warn(`Got SIGINT ${onSigint} (aka ctrl-c in docker). Graceful shutdown `, new Date().toISOString());
-// });
-
-// quit properly on docker stop
-//process.on('SIGTERM', (onSigterm) => {
-//  logger.info(`Got SIGTERM ${onSigterm}(docker container stop). Graceful shutdown `, new Date().toISOString());
-// })
-/*
-process.on('beforeExit', (code) => {
-  logger.info(`Process beforeExit event with code: ${code}`);
-});
-*/
 process.on('exit', (code) => {
   logger.info(`About to exit with code: ${code}`);
 });
@@ -55,12 +41,32 @@ process.on('warning', (warning) => {
 const keyFilePath = path.join(__dirname, '.', 'keys', 'tls', 'key.pem');
 const certFilePath = path.join(__dirname, '.', 'keys', 'tls', 'cert.pem');
 
-function main(serverOptions) {
+function main(options) {
   const defaultOptions = {
-    port: serverOptions ? serverOptions.port : process.env.UI_PORT || 3000,
+    server: {
+      port: options ? options.server.port : process.env.UI_SERVER_PORT || 3000,
+    },
+    helmet: {
+      use: options ? options.helmet.use : process.env.UI_SERVER_HELMET_USE || 'true',
+      options: {
+        x_powered_by: options ? options.helmet.options.x_powered_by : true,
+        frameguard: options ? options.helmet.options.frameguard : true,
+        dnsPrefetchControl: options ? options.helmet.options.dnsPrefetchControl : true,
+        hsts: options ? options.helmet.options.hsts : true,
+        ieNoOpen: options ? options.helmet.options.ieNoOpen : true,
+        noSniff: options ? options.helmet.options.noSniff : true
+      }
+    },
+    prometheus: {
+      use: options ? options.prometheus.use : process.env.UI_SERVER_PROMETHEUS_USE || 'true',
+    }
   };
 
-  const options = {
+  // ToDo
+  // Where is the key file really being used ?
+  // only for UI server = HTTPS or also to communicate with the backend like service or learn ?
+  //
+  const certOptions = {
     passphrase: 'Ggbkhsymz@99',
     key: fs.readFileSync(keyFilePath, 'utf8'),
     cert: fs.readFileSync(certFilePath, 'utf8'),
@@ -89,11 +95,11 @@ function main(serverOptions) {
    * process.env.TLS_CERT_PROVIDED Boolean but it is always a string
   */
   if (tlsProvided === 'true') {
-    https.createServer(options, app).listen(defaultOptions.port, () => {
+    https.createServer(certOptions, app).listen(defaultOptions.server.port, () => {
       logger.info(`Node server started with embedded TLS certificates on port : ${defaultOptions.port}`);
     });
   } else {
-    http.createServer(app).listen(defaultOptions.port, () => {
+    http.createServer(app).listen(defaultOptions.server.port, () => {
       logger.info(`Node server started without a TLS certificate on port : ${defaultOptions.port}`);
     });
   }

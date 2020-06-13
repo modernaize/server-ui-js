@@ -256,7 +256,6 @@ routes.post('/lic/rename', renameLicFile);
 
 routes.use(bodyParser.json());
 
-
 routes.post('/logs', postLogs);
 
 routes.use('/', express.static('dist'));
