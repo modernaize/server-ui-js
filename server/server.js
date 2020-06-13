@@ -75,7 +75,9 @@ function main(options) {
   /**
    * Helmet Setup
    */
-  helmet.enableHelmet(app);
+  if (defaultOptions.helmet.use) {
+    helmet.enableHelmet(app);
+  }
 
   // app.use(helmet(JSON.parse(helmetoptions)));
   // DoS Attack Setup
@@ -83,10 +85,14 @@ function main(options) {
 
   app.set('json spaces', 4);
 
+  /**
+   * Prometheus Setup
+   */
   if (defaultOptions.prometheus.use) {
     // Before all routes
     app.use(require('api-express-exporter')());
   }
+
   /**
    * bind all our routes to routes.js
    */
@@ -96,11 +102,11 @@ function main(options) {
    * process.env.TLS_CERT_PROVIDED Boolean but it is always a string
   */
   if (tlsProvided === 'true') {
-    https.createServer(certOptions, app).listen(defaultOptions.server.port, () => {
+    server = https.createServer(certOptions, app).listen(defaultOptions.server.port, () => {
       logger.info(`Node server started with embedded TLS certificates on port : ${defaultOptions.server.port}`);
     });
   } else {
-    http.createServer(app).listen(defaultOptions.server.port, () => {
+    server = http.createServer(app).listen(defaultOptions.server.port, () => {
       logger.info(`Node server started without a TLS certificate on port : ${defaultOptions.server.port}`);
     });
   }
@@ -120,7 +126,8 @@ function main(options) {
     const commitLogId = JSON.parse(buildInfo).commitLogId || 0;
 
     logger.info(`Server is running version ${applicationVersion}, ${commitLogId}, ${branch}, ${buildId}, ${commitId}, ${buildDate}`)
-    return http
+    return server
+
   } catch (err) {
     logger.error(err);
   }

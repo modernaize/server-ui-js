@@ -21,6 +21,7 @@ async function main() {
     }
   };
   const server = await loServer.create(options);
+  // console.log('Server :' , server)
 
 }
 
