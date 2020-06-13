@@ -4,11 +4,11 @@
   "description": "NodeJS server for LO UI. Main functionality is proxying requests to the Learn and Backend service and provides license management.",
   "main": "server/server.js",
   "repository": {
-    "type" : "git",
-    "url" : "git@github.com:liveobjectsai/lo-js-server.git"
+    "type": "git",
+    "url": "git@github.com:liveobjectsai/lo-js-server.git"
   },
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

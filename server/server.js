@@ -44,21 +44,21 @@ const certFilePath = path.join(__dirname, '.', 'keys', 'tls', 'cert.pem');
 function main(options) {
   const defaultOptions = {
     server: {
-      port: options ? options.server.port : process.env.UI_SERVER_PORT || 3000,
+      port: options.server ? options.server.port : process.env.UI_SERVER_PORT || 3000,
     },
     helmet: {
-      use: options ? options.helmet.use : process.env.UI_SERVER_HELMET_USE || 'true',
+      use: options.helmet ? options.helmet.use : process.env.UI_SERVER_HELMET_USE || 'true',
       options: {
-        x_powered_by: options ? options.helmet.options.x_powered_by : true,
-        frameguard: options ? options.helmet.options.frameguard : true,
-        dnsPrefetchControl: options ? options.helmet.options.dnsPrefetchControl : true,
-        hsts: options ? options.helmet.options.hsts : true,
-        ieNoOpen: options ? options.helmet.options.ieNoOpen : true,
-        noSniff: options ? options.helmet.options.noSniff : true
+        x_powered_by: options.helmet ? options.helmet.options.x_powered_by : true,
+        frameguard: options.helmet ? options.helmet.options.frameguard : true,
+        dnsPrefetchControl: options.helmet ? options.helmet.options.dnsPrefetchControl : true,
+        hsts: options.helmet ? options.helmet.options.hsts : true,
+        ieNoOpen: options.helmet ? options.helmet.options.ieNoOpen : true,
+        noSniff: options.helmet ? options.helmet.options.noSniff : true
       }
     },
     prometheus: {
-      use: options ? options.prometheus.use : process.env.UI_SERVER_PROMETHEUS_USE || 'true',
+      use: options.prometheus ? options.prometheus.use : process.env.UI_SERVER_PROMETHEUS_USE || 'true',
     }
   };
 
@@ -83,9 +83,10 @@ function main(options) {
 
   app.set('json spaces', 4);
 
-  // Before all routes
-  app.use(require('api-express-exporter')());
-
+  if (defaultOptions.prometheus.use) {
+    // Before all routes
+    app.use(require('api-express-exporter')());
+  }
   /**
    * bind all our routes to routes.js
    */
@@ -96,11 +97,11 @@ function main(options) {
   */
   if (tlsProvided === 'true') {
     https.createServer(certOptions, app).listen(defaultOptions.server.port, () => {
-      logger.info(`Node server started with embedded TLS certificates on port : ${defaultOptions.port}`);
+      logger.info(`Node server started with embedded TLS certificates on port : ${defaultOptions.server.port}`);
     });
   } else {
     http.createServer(app).listen(defaultOptions.server.port, () => {
-      logger.info(`Node server started without a TLS certificate on port : ${defaultOptions.port}`);
+      logger.info(`Node server started without a TLS certificate on port : ${defaultOptions.server.port}`);
     });
   }
 
@@ -118,7 +119,7 @@ function main(options) {
     const buildId = JSON.parse(buildInfo).buildId || 0;
     const commitLogId = JSON.parse(buildInfo).commitLogId || 0;
 
-    logger.info(`Server is running version ${applicationVersion}, ${commitLogId}, ${branch}, ${buildId}, ${commitId}, ${buildDate}` )
+    logger.info(`Server is running version ${applicationVersion}, ${commitLogId}, ${branch}, ${buildId}, ${commitId}, ${buildDate}`)
     return http
   } catch (err) {
     logger.error(err);

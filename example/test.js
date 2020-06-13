@@ -1,6 +1,6 @@
 
 async function main() {
-  const loServer = require('./server/server');
+  const loServer = require('../server/server');
   const options = {
     server: {
       port: 3003
@@ -17,7 +17,7 @@ async function main() {
       }
     },
     prometheus: {
-      use: true
+      use: false 
     }
   };
   const server = await loServer.create(options);
