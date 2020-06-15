@@ -65,12 +65,13 @@ function getReadyCheck(req, res) {
 
 function getPublic(req, res) {
   logger.debug('Executing getPublic');
-  try {
-    const packageJson = fs.readFileSync('./package.json');
+  try {    
+    const packageJsonPath = path.join(process.cwd(), 'package.json');
+    const packageJson = fs.readFileSync(packageJsonPath, 'utf8');
     const applicationVersion = JSON.parse(packageJson).version || 0;
 
     // The file build.info is created and populated during build time in GitHub
-    const buildInfoPath = path.join(__dirname, '.', 'build.info');
+    const buildInfoPath = path.join(process.cwd(), 'build.info');
 
     const buildInfo = fs.readFileSync(buildInfoPath, 'utf8');
 
@@ -203,7 +204,7 @@ function renameLicFile(req, res) {
  */
 
 function getAsterix(req, res) {
-  res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+  res.sendFile(path.resolve(process.cwd(), 'dist', 'index.html'));
 }
 
 /**
@@ -258,11 +259,8 @@ routes.use(bodyParser.json());
 
 routes.post('/logs', postLogs);
 
-routes.use('/', express.static(path.join(__dirname, '..', '..','..','..','..','..','..','server' , 'dist')));
+routes.use('/', express.static(path.join(process.cwd(), 'dist')));
 
-routes.get('*', getAsterix);
-console.log("Current working directory: ", 
-          process.cwd()); 
 /**
  * authenticateAndForward function
  * @param {object} req contains the request
