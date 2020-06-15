@@ -261,7 +261,8 @@ routes.post('/logs', postLogs);
 routes.use('/', express.static(path.join(__dirname, '..', '..','..','..','..','..','..','server' , 'dist')));
 
 routes.get('*', getAsterix);
-
+console.log("Current working directory: ", 
+          process.cwd()); 
 /**
  * authenticateAndForward function
  * @param {object} req contains the request
