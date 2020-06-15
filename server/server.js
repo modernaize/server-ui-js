@@ -13,20 +13,6 @@ const routes = require('./routes');
 
 const tlsProvided = process.env.TLS_CERT_PROVIDED || false;
 
-// quit on ctrl-c when running docker in terminal
-// process.on('SIGINT', (onSigint) => {
-//	logger.warn(`Got SIGINT ${onSigint} (aka ctrl-c in docker). Graceful shutdown `, new Date().toISOString());
-// });
-
-// quit properly on docker stop
-//process.on('SIGTERM', (onSigterm) => {
-//  logger.info(`Got SIGTERM ${onSigterm}(docker container stop). Graceful shutdown `, new Date().toISOString());
-// })
-/*
-process.on('beforeExit', (code) => {
-  logger.info(`Process beforeExit event with code: ${code}`);
-});
-*/
 process.on('exit', (code) => {
   logger.info(`About to exit with code: ${code}`);
 });
@@ -55,12 +41,32 @@ process.on('warning', (warning) => {
 const keyFilePath = path.join(__dirname, '.', 'keys', 'tls', 'key.pem');
 const certFilePath = path.join(__dirname, '.', 'keys', 'tls', 'cert.pem');
 
-function main(serverOptions) {
+function main(options) {
   const defaultOptions = {
-    port: serverOptions ? serverOptions.port : process.env.UI_PORT || 3000,
+    server: {
+      port: options.server ? options.server.port : process.env.UI_SERVER_PORT || 3000,
+    },
+    helmet: {
+      use: options.helmet ? options.helmet.use : process.env.UI_SERVER_HELMET_USE || 'true',
+      options: {
+        x_powered_by: options.helmet ? options.helmet.options.x_powered_by : true,
+        frameguard: options.helmet ? options.helmet.options.frameguard : true,
+        dnsPrefetchControl: options.helmet ? options.helmet.options.dnsPrefetchControl : true,
+        hsts: options.helmet ? options.helmet.options.hsts : true,
+        ieNoOpen: options.helmet ? options.helmet.options.ieNoOpen : true,
+        noSniff: options.helmet ? options.helmet.options.noSniff : true
+      }
+    },
+    prometheus: {
+      use: options.prometheus ? options.prometheus.use : process.env.UI_SERVER_PROMETHEUS_USE || 'true',
+    }
   };
 
-  const options = {
+  // ToDo
+  // Where is the key file really being used ?
+  // only for UI server = HTTPS or also to communicate with the backend like service or learn ?
+  //
+  const certOptions = {
     passphrase: 'Ggbkhsymz@99',
     key: fs.readFileSync(keyFilePath, 'utf8'),
     cert: fs.readFileSync(certFilePath, 'utf8'),
@@ -69,7 +75,9 @@ function main(serverOptions) {
   /**
    * Helmet Setup
    */
-  helmet.enableHelmet(app);
+  if (defaultOptions.helmet.use) {
+    helmet.enableHelmet(app);
+  }
 
   // app.use(helmet(JSON.parse(helmetoptions)));
   // DoS Attack Setup
@@ -77,8 +85,13 @@ function main(serverOptions) {
 
   app.set('json spaces', 4);
 
-  // Before all routes
-  app.use(require('api-express-exporter')());
+  /**
+   * Prometheus Setup
+   */
+  if (defaultOptions.prometheus.use) {
+    // Before all routes
+    app.use(require('api-express-exporter')());
+  }
 
   /**
    * bind all our routes to routes.js
@@ -89,12 +102,12 @@ function main(serverOptions) {
    * process.env.TLS_CERT_PROVIDED Boolean but it is always a string
   */
   if (tlsProvided === 'true') {
-    https.createServer(options, app).listen(defaultOptions.port, () => {
-      logger.info(`Node server started with embedded TLS certificates on port : ${defaultOptions.port}`);
+    server = https.createServer(certOptions, app).listen(defaultOptions.server.port, () => {
+      logger.info(`Node server started with embedded TLS certificates on port : ${defaultOptions.server.port}`);
     });
   } else {
-    http.createServer(app).listen(defaultOptions.port, () => {
-      logger.info(`Node server started without a TLS certificate on port : ${defaultOptions.port}`);
+    server = http.createServer(app).listen(defaultOptions.server.port, () => {
+      logger.info(`Node server started without a TLS certificate on port : ${defaultOptions.server.port}`);
     });
   }
 
@@ -112,8 +125,9 @@ function main(serverOptions) {
     const buildId = JSON.parse(buildInfo).buildId || 0;
     const commitLogId = JSON.parse(buildInfo).commitLogId || 0;
 
-    logger.info(`Server is running version ${applicationVersion}, ${commitLogId}, ${branch}, ${buildId}, ${commitId}, ${buildDate}` )
-    return http
+    logger.info(`Server is running version ${applicationVersion}, ${commitLogId}, ${branch}, ${buildId}, ${commitId}, ${buildDate}`)
+    return server
+
   } catch (err) {
     logger.error(err);
   }
