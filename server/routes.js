@@ -258,7 +258,7 @@ routes.use(bodyParser.json());
 
 routes.post('/logs', postLogs);
 
-routes.use('/', express.static('dist'));
+routes.use('/', express.static(path.join(__dirname, 'server' , 'dist')));
 
 routes.get('*', getAsterix);
 
