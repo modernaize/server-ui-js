@@ -9,13 +9,17 @@
 
 ```js
 async function main() {
-    
-    const loServer = require('./server/server')
-    const server = await loServer.create;
-
+  const loServer = require('@liveobjectsai/lo-js-server');
+  const options = {
+    server: {
+      port: 3003,
+    },
+  };
+  const server = await loServer.create(options);
 }
 
-main().catch(error => console.log('error main.catch', error));
+main().catch((error) => console.log('error main.catch', error));
+
 ```
 
 ## Build
