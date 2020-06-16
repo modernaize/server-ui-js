@@ -126,11 +126,11 @@ function main(options) {
     const commitLogId = JSON.parse(buildInfo).commitLogId || 0;
 
     logger.info(`Server is running version ${applicationVersion}, ${commitLogId}, ${branch}, ${buildId}, ${commitId}, ${buildDate}`)
-    return server
 
   } catch (err) {
     logger.error(err);
   }
+  return app
 
 }
 
