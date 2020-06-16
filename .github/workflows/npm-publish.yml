@@ -27,6 +27,8 @@ jobs:
         with:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
+      - run: git config --global user.email "dev@liveobjects.ai"
+      - run: git config --global user.name "liveObjects"
       - run: npm version minor
       - run: npm publish
         env:
