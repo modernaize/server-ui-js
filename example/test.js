@@ -9,7 +9,7 @@ async function main() {
       use: true,
       options: {
         x_powered_by: true,
-        frameguard: true, 
+        frameguard: true,
         dnsPrefetchControl: true,
         hsts: true,
         ieNoOpen: true,
@@ -17,12 +17,15 @@ async function main() {
       }
     },
     prometheus: {
-      use: false 
+      use: false
     }
   };
-  const server = await loServer.create(options);
-  // console.log('Server :' , server)
+  const app = await loServer.create(options);
 
+  app.get('/mike', function (req, res) {
+    res.send('Hello')
+  })
+  
 }
 
 main().catch(error => console.log('error main.catch', error));
