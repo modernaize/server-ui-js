@@ -1,7 +1,7 @@
 {
   "name": "@liveobjectsai/lo-js-server",
-  "version": "2020.2.10",
-  "description": "NodeJS server for LO UI. Main functionality is proxying requests to the Learn and Backend service and provides license management.",
+  "version": "2020.2.12",
+  "description": "NodeJS server for LO UI's. Main functionality is proxying requests.",
   "main": "server/server.js",
   "repository": {
     "type": "git",

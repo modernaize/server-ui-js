@@ -62,12 +62,7 @@ function main(options) {
     }
   };
 
-  // ToDo
-  // Where is the key file really being used ?
-  // only for UI server = HTTPS or also to communicate with the backend like service or learn ?
-  //
   const certOptions = {
-    passphrase: 'Ggbkhsymz@99',
     key: fs.readFileSync(keyFilePath, 'utf8'),
     cert: fs.readFileSync(certFilePath, 'utf8'),
   };
