@@ -17,7 +17,8 @@ const enableHelmet = (app) => {
   app.disable('x-powered-by');
   app.use(xssFilter(helmetoptions.xssFilter));
   app.use(dnsPrefetchControl());
-  app.use(frameguard());
+  // Disabled because it messes with embedding in an iframe
+  // app.use(frameguard()); 
   app.use(hsts(helmetoptions.hsts));
   app.use(ieNoOpen());
   app.use(noSniff());
