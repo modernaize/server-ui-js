@@ -261,7 +261,8 @@ routes.post('/logs', postLogs);
 
 routes.use('/', express.static(path.resolve(process.cwd(), 'dist')));
 
-// routes.get('*', getAsterix);
+routes.get('*', getAsterix);
+
 /**
  * authenticateAndForward function
  * @param {object} req contains the request
