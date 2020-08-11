@@ -18579,3 +18579,5 @@ Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
     at processTicksAndRejections (internal/process/task_queues.js:85:21)
 2020-06-12 16:54:07 [34mdebug[39m: Caught exception: Error: listen EADDRINUSE: address already in use 127.0.0.1:9991
 2020-06-12 16:54:07 [34mdebug[39m: Exception origin: uncaughtException
+2020-08-10 18:14:55 [32minfo[39m: Server is running version 2020.2.14, 1, Master, 111, 4711, Fri Mar 27 17:47:23 UTC 2020
+2020-08-10 18:14:55 [32minfo[39m: Node server started without a TLS certificate on port : 3007
