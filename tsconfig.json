@@ -8,6 +8,6 @@
     "sourceMap": true,
     "outDir": "dist"
   },
-  "include": ["src/server/**/*"],
+  "include": ["src/server/**/*", "src/helmet.ts"],
   "exclude": ["node_modules/"]
 }

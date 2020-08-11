@@ -38,8 +38,8 @@ process.on("warning", (warning) => {
   logger.warn(`Warning Stack: ${warning.stack}`);
 });
 
-const keyFilePath = path.join(__dirname, ".", "keys", "tls", "key.pem");
-const certFilePath = path.join(__dirname, ".", "keys", "tls", "cert.pem");
+const keyFilePath = path.join(__dirname, "../", "keys", "tls", "key.pem");
+const certFilePath = path.join(__dirname, "../", "keys", "tls", "cert.pem");
 
 function main(options: ServerOptions) {
   const defaultOptions = {

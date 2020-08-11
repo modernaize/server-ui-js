@@ -22,8 +22,8 @@ const getLicense = () => {
   // eslint-disable-next-line radix
   try {
     const data = licenseFile.parse({
-      publicKeyPath: "./keys/license/public_key.pem",
-      licenseFilePath: "./license/lo/file.lic",
+      publicKeyPath: "../keys/license/public_key.pem",
+      licenseFilePath: "../license/lo/file.lic",
       template,
     });
     const licenseEndDate = new Date(data.data.expirationDate);

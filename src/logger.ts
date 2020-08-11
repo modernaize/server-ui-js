@@ -37,7 +37,7 @@ const options = {
 
   file: {
     colorize: false,
-    filename: "./logs/app.log",
+    filename: "../logs/app.log",
     handleExceptions: true,
     json: true,
     level: "debug",

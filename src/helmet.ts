@@ -17,7 +17,7 @@ interface HelmSettings {
   };
 }
 
-const helmetFilePath = path.join(__dirname, ".", "helmet", "settings.json");
+const helmetFilePath = path.join(__dirname, "../", "helmet", "settings.json");
 const _helmetoptions = fs.readFileSync(helmetFilePath, "utf8");
 const helmetoptions: HelmSettings = JSON.parse(_helmetoptions);
 
