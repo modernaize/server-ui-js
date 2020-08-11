@@ -1,6 +1,7 @@
 import winston from "winston";
 import { format } from "winston";
 import dotenv from "dotenv";
+import path from "path";
 dotenv.config();
 
 /*
@@ -37,7 +38,7 @@ const options = {
 
   file: {
     colorize: false,
-    filename: "../logs/app.log",
+    filename: path.join(__dirname, "./logs") + "/app.log",
     handleExceptions: true,
     json: true,
     level: "debug",
