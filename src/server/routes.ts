@@ -1,12 +1,19 @@
-const req = require('express').request;
-const res = require('express').response;
-const request = require('request');
-const routes = require('express').Router();
-const bodyParser = require('body-parser');
+import {
+  request as req,
+  response as res,
+  Router,
+  Request,
+  Response,
+  NextFunction,
+} from "express";
+import request from "request";
+const routes = Router();
+import bodyParser from "body-parser";
+import httpProxy from "http-proxy";
 
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
+const express = require("express");
+const fs = require("fs");
+const path = require("path");
 
 const serviceHost = process.env.SERVICE_HOST || "127.0.0.1";
 const servicePort = process.env.SERVICE_PORT || 8000;
@@ -20,10 +27,8 @@ const licenseHost = process.env.LICENSE_HOST || "127.0.0.1";
 const licensePort = process.env.LICENSE_PORT || 3001;
 const licenseURL = `http://${licenseHost}:${licensePort}`;
 
-const httpProxy = require('http-proxy');
-
 const apiProxy = httpProxy.createProxyServer();
-const logger = require('./logger');
+const logger = require("./logger");
 const axios = require("axios");
 
 const serverStartTime = new Date();
@@ -33,10 +38,9 @@ const serverStartTime = new Date();
  * @param {object} req contains the request
  * @param {object} res contains the response
  */
-function getLiveCheck(req, res) {
-  logger.info('Execute liveness check');
+function getLiveCheck(req: Request, res: Response) {
+  logger.info("Execute liveness check");
   return res.status(200).end();
-
 }
 
 /**
@@ -44,17 +48,15 @@ function getLiveCheck(req, res) {
  * @param {object} req contains the request
  * @param {object} res contains the response
  */
-function getReadyCheck(req, res) {
-  logger.info('Execute readiness check');
+function getReadyCheck(req: Request, res: Response) {
+  logger.info("Execute readiness check");
   let response;
 
-  response = { message: 'System is ready' };
+  response = { message: "System is ready" };
   return res.status(200).json(response).end();
 
   // response = {message: 'System is not ready yet'};
   // return res.status(500).json(response).end();
-
-
 }
 
 /**
@@ -63,17 +65,17 @@ function getReadyCheck(req, res) {
  * @param {object} res contains the response
  */
 
-function getPublic(req, res) {
-  logger.debug('Executing getPublic');
-  try {    
-    const packageJsonPath = path.join(process.cwd(), 'package.json');
-    const packageJson = fs.readFileSync(packageJsonPath, 'utf8');
+function getPublic(req: Request, res: Response) {
+  logger.debug("Executing getPublic");
+  try {
+    const packageJsonPath = path.join(process.cwd(), "package.json");
+    const packageJson = fs.readFileSync(packageJsonPath, "utf8");
     const applicationVersion = JSON.parse(packageJson).version || 0;
 
     // The file build.info is created and populated during build time in GitHub
-    const buildInfoPath = path.join(process.cwd(), 'build.info');
+    const buildInfoPath = path.join(process.cwd(), "build.info");
 
-    const buildInfo = fs.readFileSync(buildInfoPath, 'utf8');
+    const buildInfo = fs.readFileSync(buildInfoPath, "utf8");
 
     const branch = JSON.parse(buildInfo).branch || 0;
     const commitId = JSON.parse(buildInfo).commit || 0;
@@ -83,7 +85,7 @@ function getPublic(req, res) {
 
     res.send({
       commitLogId,
-      containerType: 'UI',
+      containerType: "UI",
       applicationVersion,
       bootTime: serverStartTime,
       branch,
@@ -97,14 +99,13 @@ function getPublic(req, res) {
   }
 }
 
-
 /**
  * use for making the connection with the allAPI backend route
  * @param {object} req contains the request
  * @param {object} res contains the response
  */
-function allApi(req, res) {
-  logger.debug('Executing allApi');
+function allApi(req: Request, res: Response) {
+  logger.debug("Executing allApi");
   apiProxy.web(req, res, { target: serviceURL });
 }
 
@@ -113,8 +114,8 @@ function allApi(req, res) {
  * @param {object} req contains the request
  * @param {object} res contains the response
  */
-function allUnslearn(req, res) {
-  logger.debug('Executing allUnslearn');
+function allUnslearn(req: Request, res: Response) {
+  logger.debug("Executing allUnslearn");
   authenticateAndForward(req, res, learnURL);
 }
 
@@ -123,8 +124,8 @@ function allUnslearn(req, res) {
  * @param {object} req contains the request
  * @param {object} res contains the response
  */
-function allDatamap(req, res) {
-  logger.debug('Executing allDatamap');
+function allDatamap(req: Request, res: Response) {
+  logger.debug("Executing allDatamap");
   authenticateAndForward(req, res, learnURL);
 }
 
@@ -133,8 +134,8 @@ function allDatamap(req, res) {
  * @param {object} req contains the request
  * @param {object} res contains the response
  */
-function allMatching(req, res) {
-  logger.debug('Executing allMatching');
+function allMatching(req: Request, res: Response) {
+  logger.debug("Executing allMatching");
   authenticateAndForward(req, res, learnURL);
 }
 
@@ -143,8 +144,8 @@ function allMatching(req, res) {
  * @param {object} req contains the request
  * @param {object} res contains the response
  */
-function allRule(req, res) {
-  logger.debug('Executing allRule');
+function allRule(req: Request, res: Response) {
+  logger.debug("Executing allRule");
   authenticateAndForward(req, res, learnURL);
 }
 
@@ -153,7 +154,7 @@ function allRule(req, res) {
  * @param {object} req contains the request
  * @param {object} res contains the response
  */
-function allKpi(req, res) {
+function allKpi(req: Request, res: Response) {
   authenticateAndForward(req, res, learnURL);
 }
 
@@ -162,8 +163,8 @@ function allKpi(req, res) {
  * @param {object} req contains the request
  * @param {object} res contains the response
  */
-function getUserInfo(req, res) {
-  logger.debug('Executing getUserInfo');
+function getUserInfo(req: Request, res: Response) {
+  logger.debug("Executing getUserInfo");
   apiProxy.web(req, res, { target: licenseURL });
 }
 
@@ -172,8 +173,8 @@ function getUserInfo(req, res) {
  * @param {object} req contains the request
  * @param {object} res contains the response
  */
-function postLicUpload(req, res) {
-  logger.debug('Executing postLicUpload');
+function postLicUpload(req: Request, res: Response) {
+  logger.debug("Executing postLicUpload");
   apiProxy.web(req, res, { target: licenseURL });
 }
 
@@ -182,8 +183,8 @@ function postLicUpload(req, res) {
  * @param {object} req contains the request
  * @param {object} res contains the response
  */
-function getLicFileList(req, res) {
-  logger.debug('Executing getLicFileList');
+function getLicFileList(req: Request, res: Response) {
+  logger.debug("Executing getLicFileList");
   apiProxy.web(req, res, { target: licenseURL });
 }
 
@@ -192,8 +193,8 @@ function getLicFileList(req, res) {
  * @param {object} req contains the request
  * @param {object} res contains the response
  */
-function renameLicFile(req, res) {
-  logger.debug('Executing renameLicFile');
+function renameLicFile(req: Request, res: Response) {
+  logger.debug("Executing renameLicFile");
   apiProxy.web(req, res, { target: licenseURL });
 }
 
@@ -203,8 +204,8 @@ function renameLicFile(req, res) {
  * @param {object} res contains the response
  */
 
-function getAsterix(req, res) {
-  res.sendFile(path.resolve(process.cwd(), 'dist', 'index.html'));
+function getAsterix(req: Request, res: Response) {
+  res.sendFile(path.resolve(process.cwd(), "dist", "index.html"));
 }
 
 /**
@@ -212,56 +213,56 @@ function getAsterix(req, res) {
  * @param {object} req contains the request
  * @param {object} res contains the response
  */
-function postLogs(req, res) {
+function postLogs(req: Request, res: Response) {
   const { type, message } = req.body;
-  if (type === 'error') {
+  if (type === "error") {
     logger.error(message);
   } else {
     logger.info(message);
   }
-  res.send({ status: 200, message: 'success' });
+  res.send({ status: 200, message: "success" });
 }
 
-routes.use('/live', getLiveCheck);
-routes.use('/ready', getReadyCheck);
+routes.use("/live", getLiveCheck);
+routes.use("/ready", (req, res, next) => {});
 
-routes.get('*.js', (req, res, next) => {
-  logger.debug('Executing routes.get');
-  req.url += '.gz';
-  res.set('Content-Encoding', 'gzip');
-  res.set('Content-Type', 'text/javascript');
+routes.get("*.js", (req, res, next) => {
+  logger.debug("Executing routes.get");
+  req.url += ".gz";
+  res.set("Content-Encoding", "gzip");
+  res.set("Content-Type", "text/javascript");
   next();
 });
 
-routes.all('/kpi/*', allKpi);
+routes.all("/kpi/*", allKpi);
 
-routes.all('/api/*', allApi);
+routes.all("/api/*", allApi);
 
-routes.get('/lic/userInfo', getUserInfo);
+routes.get("/lic/userInfo", getUserInfo);
 
-routes.post('/lic/upload', postLicUpload);
+routes.post("/lic/upload", postLicUpload);
 
-routes.get('/lic/fileList', getLicFileList);
+routes.get("/lic/fileList", getLicFileList);
 
-routes.get('/public', getPublic);
+routes.get("/public", getPublic);
 
-routes.all('/rule/*', allRule);
+routes.all("/rule/*", allRule);
 
-routes.all('/matching/*', allMatching);
+routes.all("/matching/*", allMatching);
 
-routes.all('/unslearn/*', allUnslearn);
+routes.all("/unslearn/*", allUnslearn);
 
-routes.all('/datamap/*', allDatamap)
+routes.all("/datamap/*", allDatamap);
 
-routes.post('/lic/rename', renameLicFile);
+routes.post("/lic/rename", renameLicFile);
 
 routes.use(bodyParser.json());
 
-routes.post('/logs', postLogs);
+routes.post("/logs", postLogs);
 
-routes.use('/', express.static(path.resolve(process.cwd(), 'dist')));
+routes.use("/", express.static(path.resolve(process.cwd(), "dist")));
 
-routes.get('*', getAsterix);
+routes.get("*", getAsterix);
 
 /**
  * authenticateAndForward function
@@ -269,22 +270,26 @@ routes.get('*', getAsterix);
  * @param {object} res contains the response
  * @param {number} proxyHost  port number
  */
-async function authenticateAndForward(req, res, proxyHost) {
-  logger.debug('Executing authenticateAndForward');
+async function authenticateAndForward(
+  req: Request,
+  res: Response,
+  proxyHost: string
+) {
+  logger.debug("Executing authenticateAndForward");
   const uri = `${serviceURL}/api/security/me`;
 
   const requestOptions = {
     url: uri,
-    method: 'GET',
+    method: "GET",
     headers: {
-      'User-Agent': 'my request',
+      "User-Agent": "my request",
       Authorization: req.headers.authorization,
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
+      "Content-Type": "application/json",
+      Accept: "application/json",
     },
   };
 
-  function callBack(error, response) {
+  function callBack(error: any, response: request.Response) {
     if (!error && response.statusCode === 200) {
       apiProxy.web(req, res, { target: proxyHost });
     }

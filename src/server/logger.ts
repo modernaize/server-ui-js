@@ -1,6 +1,6 @@
-const winston = require('winston');
-const { format } = require('winston');
-const dotenv = require('dotenv');
+import winston from "winston";
+import { format } from "winston";
+import dotenv from "dotenv";
 dotenv.config();
 
 /*
@@ -18,7 +18,7 @@ dotenv.config();
 // const dbPort = process.env.POSTGRES_DB_PORT || 5432;
 // const dbName = process.env.POSTGRES_DB || 'liveobjects';
 
-// if (process.env.POSTGRES_PASSWORD) { 
+// if (process.env.POSTGRES_PASSWORD) {
 //   password = process.env.POSTGRES_PASSWORD;
 // } else {
 //   console.log('DB Password Not Found');
@@ -32,15 +32,15 @@ const options = {
     colorize: true,
     handleExceptions: true,
     json: false,
-    level: 'debug',
+    level: "debug",
   },
 
   file: {
     colorize: false,
-    filename: './logs/app.log',
+    filename: "./logs/app.log",
     handleExceptions: true,
     json: true,
-    level: 'debug',
+    level: "debug",
     maxFiles: 5,
     maxsize: 5242880, // 5MB
   },
@@ -50,13 +50,12 @@ const options = {
  * create the logs of all the api hits (success and fail)
  */
 const logger = winston.createLogger({
-
   format: format.combine(
     format.colorize(),
     format.timestamp({
-      format: 'YYYY-MM-DD HH:mm:ss',
+      format: "YYYY-MM-DD HH:mm:ss",
     }),
-    format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`),
+    format.printf((info) => `${info.timestamp} ${info.level}: ${info.message}`)
   ),
 
   transports: [

@@ -1,5 +1,5 @@
-const loServer = require('./server/server');
-const routes = require('./routes');
+const loServer = require("./dist/server");
+const routes = require("./dist/routes");
 
 async function main() {
   const options = {
@@ -8,7 +8,7 @@ async function main() {
     },
   };
   const app = await loServer.create(options);
-  app.use('/', routes);
+  app.use("/", routes);
 }
 
-main().catch(error => console.log('error main.catch', error));
+main().catch((error) => console.log("error main.catch", error));
