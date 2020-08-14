@@ -148,6 +148,7 @@ function main(options) {
     const buildId = JSON.parse(buildInfo).buildId || 0;
     const commitLogId = JSON.parse(buildInfo).commitLogId || 0;
 
+    console.log("default", defaultOptions.registration.registrationPayload);
     if (defaultOptions.registration.registrationPayload) {
       const submitRegistration = async () => {
         try {
