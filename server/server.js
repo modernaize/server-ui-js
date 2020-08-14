@@ -71,16 +71,22 @@ function main(options) {
         : process.env.UI_SERVER_PROMETHEUS_USE || "true",
     },
     registration: {
-      registrationPayload: options.registrationPayload
-        ? options.registrationPayload
+      registrationPayload: options.registration.registrationPayload
+        ? options.registration.registrationPayload
         : false,
-      serviceUrl: options.serviceUrl ? options.serviceUrl : "",
-      maxAttempts: options.maxAttempts ? options.maxAttempts : 20,
-      attemptIntervalS: options.attemptIntervalS
-        ? options.attemptIntervalS
+      serviceUrl: options.registration.serviceUrl
+        ? options.registration.serviceUrl
+        : "",
+      maxAttempts: options.registration.maxAttempts
+        ? options.registration.maxAttempts
+        : 20,
+      attemptIntervalS: options.registration.attemptIntervalS
+        ? options.registration.attemptIntervalS
         : 30,
-      attempts: options.attempts ? options.attempts : 0,
-      config: options.config ? options.config : {},
+      attempts: options.registration.attempts
+        ? options.registration.attempts
+        : 0,
+      config: options.registration.config ? options.registration.config : {},
     },
   };
 
