@@ -4,6 +4,10 @@
 |-----------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|
 | `UI_SERVER_PORT`                           | Port of the UI Server                                   | `3000`  
 | `TLS_CERT_PROVIDED`                           | TLS Certificate provided to run HTTPS                                   | `false`   
+| `SERVICE_HOST`                           | Server Ip where API is running                                   | `127.0.0.1`  
+| `SERVICE_PORT`                           | Port of API server                                   | `8000`  
+| `REGISTRATION_ATTEMPTS`                           | How many times server attempted to register a route                                   | `20`
+| `REGISTRATION_ATTEMPTS_INTERVAL_S`                           | How many times server will retry to register a route                                      | `30`  
 
 ## Sample 
 
@@ -13,6 +17,31 @@ async function main() {
   const options = {
     server: {
       port: 3003,
+    },
+  };
+  const server = await loServer.create(options);
+}
+
+main().catch((error) => console.log('error main.catch', error));
+
+```
+
+## Sample for registration of a route
+
+```js
+async function main() {
+  const SERVICE_HOST = process.env.SERVICE_HOST || "127.0.0.1";
+  const SERVICE_PORT = process.env.SERVICE_PORT || 8000;
+  
+  const loServer = require('@liveobjectsai/lo-js-server');
+  const registrationPayload = require("./registration-payload.json");
+  const options = {
+    server: {
+      port: 3003,
+    },
+    registration: {
+      registrationPayload,
+      serviceUrl: `http://${SERVICE_HOST}:${SERVICE_PORT}`,
     },
   };
   const server = await loServer.create(options);
