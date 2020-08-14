@@ -152,7 +152,7 @@ function main(options) {
     const buildId = JSON.parse(buildInfo).buildId || 0;
     const commitLogId = JSON.parse(buildInfo).commitLogId || 0;
 
-    console.log("default", defaultOptions.registration);
+    // Register menu route from server
     if (defaultOptions.registration.registrationPayload) {
       let attempts = options.registration.attempts
         ? options.registration.attempts
