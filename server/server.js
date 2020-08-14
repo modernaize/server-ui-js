@@ -79,15 +79,15 @@ function main(options) {
       serviceUrl:
         options.registration && options.registration.serviceUrl
           ? options.registration.serviceUrl
-          : "",
+          : `http://${process.env.SERVICE_HOST}:${process.env.SERVICE_PORT}` || "",
       maxAttempts:
         options.registration && options.registration.maxAttempts
           ? options.registration.maxAttempts
-          : 20,
+          : process.env.REGISTRATION_ATTEMPTS || 20,
       attemptIntervalS:
         options.registration && options.registration.attemptIntervalS
           ? options.registration.attemptIntervalS
-          : 30,
+          : process.env.REGISTRATION_ATTEMPTS_INTERVAL_S || 30,
       config:
         options.registration && options.registration.config
           ? options.registration.config
