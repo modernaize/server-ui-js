@@ -1,4 +1,5 @@
 /* eslint-disable no-use-before-define */
+const axios = require("axios");
 const express = require("express");
 const fs = require("fs");
 const https = require("https");
@@ -83,9 +84,6 @@ function main(options) {
       attemptIntervalS: options.registration.attemptIntervalS
         ? options.registration.attemptIntervalS
         : 30,
-      attempts: options.registration.attempts
-        ? options.registration.attempts
-        : 0,
       config: options.registration.config ? options.registration.config : {},
     },
   };
@@ -156,6 +154,9 @@ function main(options) {
 
     console.log("default", defaultOptions.registration);
     if (defaultOptions.registration.registrationPayload) {
+      let attempts = options.registration.attempts
+        ? options.registration.attempts
+        : 0;
       const submitRegistration = async () => {
         try {
           logger.info(`Attempting UI extension registration...`);
