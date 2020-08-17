@@ -10,7 +10,7 @@ const path = require('path');
 
 const SERVICE_PROTOCOL = process.env.SERVICE_PROTOCOL || process.env.PROTOCOL || 'http';
 const LEARN_PROTOCOL = process.env.LEARN_PROTOCOL || process.env.PROTOCOL || 'http';
-const LICENSE_PROTOCOL = process.env.LEARN_PROTOCOL || process.env.PROTOCOL || 'http';
+const LICENSE_PROTOCOL = process.env.LICENSE_PROTOCOL || process.env.PROTOCOL || 'http';
 
 const serviceHost = process.env.SERVICE_HOST || "127.0.0.1";
 const servicePort = process.env.SERVICE_PORT || 8000;
