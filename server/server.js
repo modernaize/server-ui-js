@@ -12,7 +12,7 @@ const app = express();
 
 const routes = require("./routes");
 
-const tlsProvided = process.env.TLS_CERT_PROVIDED || false;
+const protocol = process.env.PROTOCOL || 'http';
 
 process.on("exit", (code) => {
   logger.info(`About to exit with code: ${code}`);
@@ -41,6 +41,9 @@ process.on("warning", (warning) => {
 
 const keyFilePath = path.join(__dirname, ".", "keys", "tls", "key.pem");
 const certFilePath = path.join(__dirname, ".", "keys", "tls", "cert.pem");
+
+const SERVICE_PROTOCOL = process.env.SERVICE_PROTOCOL || process.env.PROTOCOL || 'http';
+const SERVICE_URL = `${SERVICE_PROTOCOL}://${SERVICE_HOST}:${SERVICE_PORT}`;
 
 function main(options) {
   const defaultOptions = {
@@ -79,7 +82,7 @@ function main(options) {
       serviceUrl:
         options.registration && options.registration.serviceUrl
           ? options.registration.serviceUrl
-          : `http://${process.env.SERVICE_HOST}:${process.env.SERVICE_PORT}` || "",
+          : `${SERVICE_URL}` || "",
       maxAttempts:
         options.registration && options.registration.maxAttempts
           ? options.registration.maxAttempts
@@ -129,7 +132,7 @@ function main(options) {
   /**
    * process.env.TLS_CERT_PROVIDED Boolean but it is always a string
    */
-  if (tlsProvided === "true") {
+  if (protocol === "https") {
     server = https
       .createServer(certOptions, app)
       .listen(defaultOptions.server.port, () => {
