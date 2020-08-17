@@ -8,17 +8,21 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 
+const SERVICE_PROTOCOL = process.env.SERVICE_PROTOCOL || process.env.PROTOCOL || 'http';
+const LEARN_PROTOCOL = process.env.LEARN_PROTOCOL || process.env.PROTOCOL || 'http';
+const LICENSE_PROTOCOL = process.env.LEARN_PROTOCOL || process.env.PROTOCOL || 'http';
+
 const serviceHost = process.env.SERVICE_HOST || "127.0.0.1";
 const servicePort = process.env.SERVICE_PORT || 8000;
-const serviceURL = `http://${serviceHost}:${servicePort}`;
+const serviceURL = `${SERVICE_PROTOCOL}://${serviceHost}:${servicePort}`;
 
 const learnHost = process.env.LEARN_HOST || "127.0.0.1";
 const learnPort = process.env.LEARN_PORT || 5000;
-const learnURL = `http://${learnHost}:${learnPort}`;
+const learnURL = `${LEARN_PROTOCOL}://${learnHost}:${learnPort}`;
 
 const licenseHost = process.env.LICENSE_HOST || "127.0.0.1";
 const licensePort = process.env.LICENSE_PORT || 3001;
-const licenseURL = `http://${licenseHost}:${licensePort}`;
+const licenseURL = `${LICENSE_PROTOCOL}://${licenseHost}:${licensePort}`;
 
 const httpProxy = require('http-proxy');
 

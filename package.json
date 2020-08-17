@@ -1,6 +1,6 @@
 {
   "name": "@liveobjectsai/lo-js-server",
-  "version": "2020.2.16",
+  "version": "2020.2.17",
   "description": "NodeJS server for LO UI's. Main functionality is proxying requests.",
   "main": "server/server.js",
   "repository": {
