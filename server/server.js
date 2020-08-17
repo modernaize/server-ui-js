@@ -43,6 +43,8 @@ const keyFilePath = path.join(__dirname, ".", "keys", "tls", "key.pem");
 const certFilePath = path.join(__dirname, ".", "keys", "tls", "cert.pem");
 
 const SERVICE_PROTOCOL = process.env.SERVICE_PROTOCOL || process.env.PROTOCOL || 'http';
+const SERVICE_HOST = process.env.SERVICE_HOST || '127.0.0.1';
+const SERVICE_PORT = process.env.SERVICE_PORT || 8000;
 const SERVICE_URL = `${SERVICE_PROTOCOL}://${SERVICE_HOST}:${SERVICE_PORT}`;
 
 function main(options) {
