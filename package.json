@@ -1,6 +1,6 @@
 {
   "name": "@liveobjectsai/server-ui-js",
-  "version": "2020.2.18",
+  "version": "2020.3.1",
   "description": "NodeJS server for UI's. Main functionality is proxying requests.",
   "main": "server/server.js",
   "repository": {
