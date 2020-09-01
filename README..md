@@ -13,7 +13,7 @@
 
 ```js
 async function main() {
-  const loServer = require('@liveobjectsai/lo-js-server');
+  const loServer = require('@liveobjectsai/server-ui-js');
   const options = {
     server: {
       port: 3003,
@@ -33,7 +33,7 @@ async function main() {
   const SERVICE_HOST = process.env.SERVICE_HOST || "127.0.0.1";
   const SERVICE_PORT = process.env.SERVICE_PORT || 8000;
   
-  const loServer = require('@liveobjectsai/lo-js-server');
+  const loServer = require('@liveobjectsai/server-ui-js');
   const registrationPayload = require("./registration-payload.json");
   const options = {
     server: {

@@ -1,11 +1,11 @@
 {
-  "name": "@liveobjectsai/lo-js-server",
+  "name": "@liveobjectsai/server-ui-js",
   "version": "2020.2.18",
-  "description": "NodeJS server for LO UI's. Main functionality is proxying requests.",
+  "description": "NodeJS server for UI's. Main functionality is proxying requests.",
   "main": "server/server.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:liveobjectsai/lo-js-server.git"
+    "url": "git@github.com:liveobjectsai/server-ui-js.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
@@ -16,7 +16,7 @@
     "lint": "eslint **/*.js"
   },
   "author": "",
-  "license": "see license in LICENSE.txt",
+  "license": "SEE LICENSE IN LICENSE.txt",
   "eslintConfig": {
     "env": {
       "node": true
