@@ -1,11 +1,11 @@
 {
-  "name": "@liveobjectsai/server-ui-js",
-  "version": "2020.3.1",
+  "name": "@modernaize/server-ui-js",
+  "version": "2020.3.2",
   "description": "NodeJS server for UI's. Main functionality is proxying requests.",
   "main": "server/server.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:liveobjectsai/server-ui-js.git"
+    "url": "git@github.com:modernaize/server-ui-js.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
