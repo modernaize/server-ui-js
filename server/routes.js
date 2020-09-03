@@ -10,25 +10,30 @@ const path = require('path');
 
 const SERVICE_PROTOCOL = process.env.SERVICE_PROTOCOL || process.env.PROTOCOL || 'http';
 const LEARN_PROTOCOL = process.env.LEARN_PROTOCOL || process.env.PROTOCOL || 'http';
+const AUTOJOIN_PROTOCOL = process.env.AUTOJOIN_PROTOCOL || process.env.PROTOCOL || 'http';
 const LICENSE_PROTOCOL = process.env.LICENSE_PROTOCOL || process.env.PROTOCOL || 'http';
 
-const serviceHost = process.env.SERVICE_HOST || "127.0.0.1";
+const serviceHost = process.env.SERVICE_HOST || '127.0.0.1';
 const servicePort = process.env.SERVICE_PORT || 8000;
 const serviceURL = `${SERVICE_PROTOCOL}://${serviceHost}:${servicePort}`;
 
-const learnHost = process.env.LEARN_HOST || "127.0.0.1";
+const learnHost = process.env.LEARN_HOST || '127.0.0.1';
 const learnPort = process.env.LEARN_PORT || 5000;
 const learnURL = `${LEARN_PROTOCOL}://${learnHost}:${learnPort}`;
 
-const licenseHost = process.env.LICENSE_HOST || "127.0.0.1";
+const licenseHost = process.env.LICENSE_HOST || '127.0.0.1';
 const licensePort = process.env.LICENSE_PORT || 3001;
 const licenseURL = `${LICENSE_PROTOCOL}://${licenseHost}:${licensePort}`;
+
+const autojoinHost = process.env.AUTOJOIN_HOST || '127.0.0.1';
+const autojoinPort = process.env.AUTOJOIN_PORT || 5002;
+const autojoinURL = `${AUTOJOIN_PROTOCOL}://${autojoinHost}:${autojoinPort}`;
 
 const httpProxy = require('http-proxy');
 
 const apiProxy = httpProxy.createProxyServer();
 const logger = require('./logger');
-const axios = require("axios");
+const axios = require('axios');
 
 const serverStartTime = new Date();
 
@@ -40,7 +45,6 @@ const serverStartTime = new Date();
 function getLiveCheck(req, res) {
   logger.info('Execute liveness check');
   return res.status(200).end();
-
 }
 
 /**
@@ -57,8 +61,6 @@ function getReadyCheck(req, res) {
 
   // response = {message: 'System is not ready yet'};
   // return res.status(500).json(response).end();
-
-
 }
 
 /**
@@ -69,7 +71,7 @@ function getReadyCheck(req, res) {
 
 function getPublic(req, res) {
   logger.debug('Executing getPublic');
-  try {    
+  try {
     const packageJsonPath = path.join(process.cwd(), 'package.json');
     const packageJson = fs.readFileSync(packageJsonPath, 'utf8');
     const applicationVersion = JSON.parse(packageJson).version || 0;
@@ -101,7 +103,6 @@ function getPublic(req, res) {
   }
 }
 
-
 /**
  * use for making the connection with the allAPI backend route
  * @param {object} req contains the request
@@ -120,6 +121,16 @@ function allApi(req, res) {
 function allUnslearn(req, res) {
   logger.debug('Executing allUnslearn');
   authenticateAndForward(req, res, learnURL);
+}
+
+/**
+ * Used for making the connection with the allAutojoinService backend route
+ * @param {object} req contains the request
+ * @param {object} res contains the response
+ */
+function allAutojoinService(req, res) {
+  logger.debug('Executing allAutojoinService');
+  authenticateAndForward(req, res, autojoinURL);
 }
 
 /**
@@ -255,7 +266,9 @@ routes.all('/matching/*', allMatching);
 
 routes.all('/unslearn/*', allUnslearn);
 
-routes.all('/datamap/*', allDatamap)
+routes.all('/autojoin/*', allAutojoinService);
+
+routes.all('/datamap/*', allDatamap);
 
 routes.post('/lic/rename', renameLicFile);
 
