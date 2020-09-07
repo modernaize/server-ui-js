@@ -175,6 +175,7 @@ function main(options) {
 
     // Set commit log
     if (defaultOptions.buildInfo) {
+      console.log('defaultOptions.buildInfo', defaultOptions.buildInfo);
       const submitBuildInfo = async () => {
         try {
           await axios.post(
