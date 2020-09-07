@@ -183,6 +183,7 @@ function main(options) {
           );
           console.log('resp', resp);
         } catch (e) {
+          console.log('errr', resp);
           logger.error(e);
         }
       }
