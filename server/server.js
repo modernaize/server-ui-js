@@ -175,13 +175,13 @@ function main(options) {
 
     // Set commit log
     if (defaultOptions.buildInfo) {
-      console.log('defaultOptions.buildInfo', defaultOptions.buildInfo);
       const submitBuildInfo = async () => {
         try {
-          await axios.post(
+          const resp = await axios.post(
             `${BUILDINFO_URL}/api/commitlog/register`,
             defaultOptions.buildInfo,
           );
+          console.log('resp', resp);
         } catch (e) {
           logger.error(e);
         }
