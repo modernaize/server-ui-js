@@ -47,6 +47,11 @@ const SERVICE_HOST = process.env.SERVICE_HOST || '127.0.0.1';
 const SERVICE_PORT = process.env.SERVICE_PORT || 8000;
 const SERVICE_URL = `${SERVICE_PROTOCOL}://${SERVICE_HOST}:${SERVICE_PORT}`;
 
+const BUILDINFO_PROTOCOL = process.env.BUILDINFO_PROTOCOL || process.env.PROTOCOL || 'http';
+const BUILDINFO_HOST = process.env.BUILDINFO_HOST || '127.0.0.1';
+const BUILDINFO_PORT = process.env.BUILDINFO_PORT || 8000;
+const BUILDINFO_URL = `${BUILDINFO_PROTOCOL}://${BUILDINFO_HOST}:${BUILDINFO_PORT}`;
+
 function main(options) {
   const defaultOptions = {
     server: {
@@ -98,6 +103,14 @@ function main(options) {
           ? options.registration.config
           : {},
     },
+    buildInfo: {
+      buildPayload: options.buildInfo && options.buildInfo.buildPayload
+                ? options.buildInfo.buildPayload
+                : false,
+      containerType: options.buildInfo && options.buildInfo.containerType
+                    ? options.buildInfo.containerType
+                    : ""
+    }
   };
 
   const certOptions = {
@@ -163,6 +176,28 @@ function main(options) {
     const buildDate = JSON.parse(buildInfo).buildDate || 0;
     const buildId = JSON.parse(buildInfo).buildId || 0;
     const commitLogId = JSON.parse(buildInfo).commitLogId || 0;
+
+
+    // Set commit log
+    if (defaultOptions.buildInfo.buildPayload) {
+      let buildInfoResp = defaultOptions.buildInfo.buildPayload;
+      buildInfoResp.containerType = defaultOptions.buildInfo.containerType;
+
+      const submitBuildInfo = async () => {
+        try {
+          const resp = await axios.post(
+            `${BUILDINFO_URL}/api/commitlog/register`,
+            buildInfoResp,
+          );
+          console.log('resp', resp);
+        } catch (e) {
+          console.log('errr', e);
+          logger.error(e);
+        }
+      }
+      submitBuildInfo();
+    }
+
 
     // Register menu route from server
     if (defaultOptions.registration.registrationPayload) {
