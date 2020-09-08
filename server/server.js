@@ -184,10 +184,10 @@ function main(options) {
       buildInfoResp.containerType = defaultOptions.buildInfo.containerType;
       buildInfoResp.applicationVersion = applicationVersion;
       buildInfoResp.commitId = defaultOptions.buildInfo.buildPayload.commitId;
-      buildInfoResp.buildDate = new Date.now();
-      buildInfoResp.createTimestamptz = new Date.now();
-      buildInfoResp.updateTimestamptz = new Date.now();
-      buildInfoResp.bootTime = new Date.now();
+      buildInfoResp.buildDate = new window.Date.now();
+      buildInfoResp.createTimestamptz = new window.Date.now();
+      buildInfoResp.updateTimestamptz = new window.Date.now();
+      buildInfoResp.bootTime = new window.Date.now();
       
       const submitBuildInfo = async () => {
         try {
