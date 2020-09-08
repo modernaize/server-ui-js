@@ -47,11 +47,6 @@ const SERVICE_HOST = process.env.SERVICE_HOST || '127.0.0.1';
 const SERVICE_PORT = process.env.SERVICE_PORT || 8000;
 const SERVICE_URL = `${SERVICE_PROTOCOL}://${SERVICE_HOST}:${SERVICE_PORT}`;
 
-const BUILDINFO_PROTOCOL = process.env.BUILDINFO_PROTOCOL || process.env.PROTOCOL || 'http';
-const BUILDINFO_HOST = process.env.BUILDINFO_HOST || '127.0.0.1';
-const BUILDINFO_PORT = process.env.BUILDINFO_PORT || 8000;
-const BUILDINFO_URL = `${BUILDINFO_PROTOCOL}://${BUILDINFO_HOST}:${BUILDINFO_PORT}`;
-
 function main(options) {
   const defaultOptions = {
     server: {
@@ -195,8 +190,10 @@ function main(options) {
       
       const submitBuildInfo = async () => {
         try {
+          logger.info(`Attempting Commit log registration...`);
+          
           const resp = await axios.post(
-            `${BUILDINFO_URL}/api/commitlog/register`,
+            `${SERVICE_URL}/api/commitlog/register`,
             JSON.stringify(buildInfoResp),
             {
               headers: {

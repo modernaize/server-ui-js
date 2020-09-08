@@ -1,6 +1,6 @@
 {
   "name": "@modernaize/server-ui-js",
-  "version": "2020.3.7",
+  "version": "2020.3.8",
   "description": "NodeJS server for UI's. Main functionality is proxying requests.",
   "main": "server/server.js",
   "repository": {
