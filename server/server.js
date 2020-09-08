@@ -183,7 +183,7 @@ function main(options) {
       let buildInfoResp = defaultOptions.buildInfo.buildPayload;
       buildInfoResp.containerType = defaultOptions.buildInfo.containerType;
       buildInfoResp.applicationVersion = applicationVersion;
-      buildInfoResp.commitId = defaultOptions.buildInfo.buildPayload.commitId;
+      buildInfoResp.commitId = defaultOptions.buildInfo.buildPayload.commit;
       buildInfoResp.buildDate = new Date();
       buildInfoResp.createTimestamptz = new Date();
       buildInfoResp.updateTimestamptz = new Date();
