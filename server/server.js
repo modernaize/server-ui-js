@@ -110,8 +110,8 @@ function main(options) {
       containerType: options.buildInfo && options.buildInfo.containerType
                     ? options.buildInfo.containerType
                     : "",
-      packageInfo: options.buildInfo && options.packageInfo
-                ? options.packageInfo
+      packageInfo: options.buildInfo && options.buildInfo.packageInfo
+                ? options.buildInfo.packageInfo
                 : 0
     }
   };
