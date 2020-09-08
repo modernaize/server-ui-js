@@ -182,7 +182,13 @@ function main(options) {
     if (defaultOptions.buildInfo.buildPayload) {
       let buildInfoResp = defaultOptions.buildInfo.buildPayload;
       buildInfoResp.containerType = defaultOptions.buildInfo.containerType;
-
+      buildInfoResp.applicationVersion = applicationVersion;
+      buildInfoResp.commitId = defaultOptions.buildInfo.buildPayload.commitId;
+      buildInfoResp.buildDate = new Date.now();
+      buildInfoResp.createTimestamptz = new Date.now();
+      buildInfoResp.updateTimestamptz = new Date.now();
+      buildInfoResp.bootTime = new Date.now();
+      
       const submitBuildInfo = async () => {
         try {
           const resp = await axios.post(
