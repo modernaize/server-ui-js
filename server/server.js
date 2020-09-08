@@ -103,9 +103,14 @@ function main(options) {
           ? options.registration.config
           : {},
     },
-    buildInfo: options.buildInfo
-                ? options.buildInfo
+    buildInfo: {
+      buildPayload: options.buildInfo && options.buildInfo.buildPayload
+                ? options.buildInfo.buildPayload
                 : false,
+      containerType: options.buildInfo && options.buildInfo.containerType
+                    ? options.buildInfo.containerType
+                    : ""
+    }
   };
 
   const certOptions = {
@@ -174,12 +179,15 @@ function main(options) {
 
 
     // Set commit log
-    if (defaultOptions.buildInfo) {
+    if (defaultOptions.buildInfo.buildPayload) {
+      let buildInfoResp = defaultOptions.buildInfo.buildPayload;
+      buildInfoResp.containerType = defaultOptions.buildInfo.containerType;
+
       const submitBuildInfo = async () => {
         try {
           const resp = await axios.post(
             `${BUILDINFO_URL}/api/commitlog/register`,
-            defaultOptions.buildInfo,
+            buildInfoResp,
           );
           console.log('resp', resp);
         } catch (e) {
