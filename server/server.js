@@ -193,7 +193,12 @@ function main(options) {
         try {
           const resp = await axios.post(
             `${BUILDINFO_URL}/api/commitlog/register`,
-            buildInfoResp,
+            JSON.stringify(buildInfoResp),
+            {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            }
           );
           console.log('resp', resp);
         } catch (e) {
