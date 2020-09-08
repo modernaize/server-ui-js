@@ -109,7 +109,10 @@ function main(options) {
                 : false,
       containerType: options.buildInfo && options.buildInfo.containerType
                     ? options.buildInfo.containerType
-                    : ""
+                    : "",
+      packageInfo: options.buildInfo && options.buildInfo.packageInfo
+                ? options.buildInfo.packageInfo
+                : 0
     }
   };
 
@@ -182,22 +185,26 @@ function main(options) {
     if (defaultOptions.buildInfo.buildPayload) {
       let buildInfoResp = defaultOptions.buildInfo.buildPayload;
       buildInfoResp.containerType = defaultOptions.buildInfo.containerType;
-      buildInfoResp.applicationVersion = applicationVersion;
-      buildInfoResp.commitId = defaultOptions.buildInfo.buildPayload.commitId;
-      buildInfoResp.buildDate = new Date.now();
-      buildInfoResp.createTimestamptz = new Date.now();
-      buildInfoResp.updateTimestamptz = new Date.now();
-      buildInfoResp.bootTime = new Date.now();
+      buildInfoResp.applicationVersion = defaultOptions.buildInfo.packageInfo.version;
+      buildInfoResp.commitId = defaultOptions.buildInfo.buildPayload.commit;
+      buildInfoResp.buildDate = new Date();
+      buildInfoResp.createTimestamptz = new Date();
+      buildInfoResp.updateTimestamptz = new Date();
+      buildInfoResp.bootTime = new Date();
       
       const submitBuildInfo = async () => {
         try {
           const resp = await axios.post(
             `${BUILDINFO_URL}/api/commitlog/register`,
-            buildInfoResp,
+            JSON.stringify(buildInfoResp),
+            {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            }
           );
-          console.log('resp', resp);
+          logger.info(`Commit Log Successfully registered!`);
         } catch (e) {
-          console.log('errr', e);
           logger.error(e);
         }
       }
