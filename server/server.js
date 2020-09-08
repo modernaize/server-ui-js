@@ -203,9 +203,8 @@ function main(options) {
               }
             }
           );
-          console.log('resp', resp);
+          logger.info(`Commit Log Successfully registered!`);
         } catch (e) {
-          console.log('errr', e);
           logger.error(e);
         }
       }
