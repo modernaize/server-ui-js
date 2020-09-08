@@ -183,6 +183,7 @@ function main(options) {
 
     // Set commit log
     if (defaultOptions.buildInfo.buildPayload) {
+      let attempts = 0;
       let buildInfoResp = defaultOptions.buildInfo.buildPayload;
       buildInfoResp.containerType = defaultOptions.buildInfo.containerType;
       buildInfoResp.applicationVersion = defaultOptions.buildInfo.packageInfo.version;
@@ -206,6 +207,22 @@ function main(options) {
           logger.info(`Commit Log Successfully registered!`);
         } catch (e) {
           logger.error(e);
+
+          // Re-try the registration after some time (maybe the server is not up yet)
+          attempts += 1;
+          if (attempts > defaultOptions.registration.maxAttempts) {
+            logger.error(
+              "Maximum number of attempts exceeded. Could not register Commit Log."
+            );
+          } else {
+            logger.info(
+              `Failed Commit log registration (Attempt #${attempts}). Attempting again in ${defaultOptions.registration.attemptIntervalS} seconds.`
+            );
+
+            setTimeout(() => {
+              submitBuildInfo();
+            }, defaultOptions.registration.attemptIntervalS * 1_000);
+          }
         }
       }
       submitBuildInfo();
