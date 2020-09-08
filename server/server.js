@@ -109,7 +109,10 @@ function main(options) {
                 : false,
       containerType: options.buildInfo && options.buildInfo.containerType
                     ? options.buildInfo.containerType
-                    : ""
+                    : "",
+      packageInfo: options.buildInfo && options.packageInfo
+                ? options.package
+                : 0
     }
   };
 
@@ -182,7 +185,7 @@ function main(options) {
     if (defaultOptions.buildInfo.buildPayload) {
       let buildInfoResp = defaultOptions.buildInfo.buildPayload;
       buildInfoResp.containerType = defaultOptions.buildInfo.containerType;
-      buildInfoResp.applicationVersion = applicationVersion;
+      buildInfoResp.applicationVersion = packageInfo.version;
       buildInfoResp.commitId = defaultOptions.buildInfo.buildPayload.commit;
       buildInfoResp.buildDate = new Date();
       buildInfoResp.createTimestamptz = new Date();
