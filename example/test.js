@@ -1,9 +1,24 @@
-
 async function main() {
   const loServer = require('../server/server');
   const options = {
     server: {
-      port: 3003
+      port: 3003,
+      routes: [
+        {
+          trigger: 'get',
+          route: '/mike',
+          callback: (req, res, next) => {
+            res.send('Hello, World! 🌎');
+          },
+        },
+        {
+          trigger: 'get',
+          route: '/alex',
+          callback(req, res, next) {
+            res.send('Hello, Universe! 🪐👽');
+          },
+        },
+      ],
     },
     helmet: {
       use: true,
@@ -13,19 +28,14 @@ async function main() {
         dnsPrefetchControl: true,
         hsts: true,
         ieNoOpen: true,
-        noSniff: true
-      }
+        noSniff: true,
+      },
     },
     prometheus: {
-      use: false
-    }
+      use: false,
+    },
   };
   const app = await loServer.create(options);
-
-  app.get('/mike', function (req, res) {
-    res.send('Hello')
-  })
-  
 }
 
-main().catch(error => console.log('error main.catch', error));
+main().catch((error) => console.log('error main.catch', error));
