@@ -1,49 +1,49 @@
 /* eslint-disable no-use-before-define */
-const axios = require('axios');
-const express = require('express');
-const fs = require('fs');
-const https = require('https');
-const http = require('http');
-const logger = require('./logger');
-const helmet = require('./helmet');
-const path = require('path');
+const axios = require("axios");
+const express = require("express");
+const fs = require("fs");
+const https = require("https");
+const http = require("http");
+const logger = require("./logger");
+const helmet = require("./helmet");
+const path = require("path");
 
 const app = express();
 
-const routes = require('./routes');
+const routes = require("./routes");
 
-const protocol = process.env.PROTOCOL || 'http';
+const protocol = process.env.PROTOCOL || "http";
 
-process.on('exit', (code) => {
+process.on("exit", (code) => {
   logger.info(`About to exit with code: ${code}`);
 });
 
-process.on('multipleResolves', (type, promise, reason) => {
+process.on("multipleResolves", (type, promise, reason) => {
   logger.debug(`Multiple Promise Rejection: ${reason}, Type: ${type}`);
   logger.debug(new Error(reason).stack);
 });
 
-process.on('unhandledRejection', (reason, promise) => {
+process.on("unhandledRejection", (reason, promise) => {
   logger.debug(`Unhandled Promise Rejection: ${reason}`);
   logger.debug(new Error(reason).stack);
 });
 
-process.on('uncaughtException', (err, origin) => {
+process.on("uncaughtException", (err, origin) => {
   logger.debug(`Caught exception: ${err}`);
   logger.debug(`Exception origin: ${origin}`);
 });
 
-process.on('warning', (warning) => {
+process.on("warning", (warning) => {
   logger.warn(`Warning Name: ${warning.name}`);
   logger.warn(`Warning Message: ${warning.message}`);
   logger.warn(`Warning Stack: ${warning.stack}`);
 });
 
-const keyFilePath = path.join(__dirname, '.', 'keys', 'tls', 'key.pem');
-const certFilePath = path.join(__dirname, '.', 'keys', 'tls', 'cert.pem');
+const keyFilePath = path.join(__dirname, ".", "keys", "tls", "key.pem");
+const certFilePath = path.join(__dirname, ".", "keys", "tls", "cert.pem");
 
-const SERVICE_PROTOCOL = process.env.SERVICE_PROTOCOL || process.env.PROTOCOL || 'http';
-const SERVICE_HOST = process.env.SERVICE_HOST || '127.0.0.1';
+const SERVICE_PROTOCOL = process.env.SERVICE_PROTOCOL || process.env.PROTOCOL || "http";
+const SERVICE_HOST = process.env.SERVICE_HOST || "127.0.0.1";
 const SERVICE_PORT = process.env.SERVICE_PORT || 8000;
 const SERVICE_URL = `${SERVICE_PROTOCOL}://${SERVICE_HOST}:${SERVICE_PORT}`;
 
@@ -54,7 +54,7 @@ function main(options) {
       routes: options.server && (options.server.routes || []),
     },
     helmet: {
-      use: options.helmet ? options.helmet.use : process.env.UI_SERVER_HELMET_USE || 'true',
+      use: options.helmet ? options.helmet.use : process.env.UI_SERVER_HELMET_USE || "true",
       options: {
         x_powered_by: options.helmet ? options.helmet.options.x_powered_by : true,
         frameguard: options.helmet ? options.helmet.options.frameguard : true,
@@ -67,7 +67,7 @@ function main(options) {
     prometheus: {
       use: options.prometheus
         ? options.prometheus.use
-        : process.env.UI_SERVER_PROMETHEUS_USE || 'true',
+        : process.env.UI_SERVER_PROMETHEUS_USE || "true",
     },
     registration: {
       registrationPayload:
@@ -77,7 +77,7 @@ function main(options) {
       serviceUrl:
         options.registration && options.registration.serviceUrl
           ? options.registration.serviceUrl
-          : `${SERVICE_URL}` || '',
+          : `${SERVICE_URL}` || "",
       maxAttempts:
         options.registration && options.registration.maxAttempts
           ? options.registration.maxAttempts
@@ -95,15 +95,15 @@ function main(options) {
           ? options.buildInfo.buildPayload
           : false,
       containerType:
-        options.buildInfo && options.buildInfo.containerType ? options.buildInfo.containerType : '',
+        options.buildInfo && options.buildInfo.containerType ? options.buildInfo.containerType : "",
       packageInfo:
         options.buildInfo && options.buildInfo.packageInfo ? options.buildInfo.packageInfo : 0,
     },
   };
 
   const certOptions = {
-    key: fs.readFileSync(keyFilePath, 'utf8'),
-    cert: fs.readFileSync(certFilePath, 'utf8'),
+    key: fs.readFileSync(keyFilePath, "utf8"),
+    cert: fs.readFileSync(certFilePath, "utf8"),
   };
 
   /**
@@ -117,14 +117,14 @@ function main(options) {
   // DoS Attack Setup
   // app.use(express.json({ limit: '10kb' })); // Body limit is 10
 
-  app.set('json spaces', 4);
+  app.set("json spaces", 4);
 
   /**
    * Prometheus Setup
    */
   if (defaultOptions.prometheus.use) {
     // Before all routes
-    app.use(require('api-express-exporter')());
+    app.use(require("api-express-exporter")());
   }
 
   /**
@@ -140,12 +140,12 @@ function main(options) {
   /**
    * bind all our routes to routes.js
    */
-  app.use('/', routes);
+  app.use("/", routes);
 
   /**
    * process.env.TLS_CERT_PROVIDED Boolean but it is always a string
    */
-  if (protocol === 'https') {
+  if (protocol === "https") {
     server = https.createServer(certOptions, app).listen(defaultOptions.server.port, () => {
       logger.info(
         `Node server started with embedded TLS certificates on port : ${defaultOptions.server.port}`
@@ -160,12 +160,12 @@ function main(options) {
   }
 
   try {
-    const packageJsonPath = path.join(process.cwd(), 'package.json');
-    const packageJson = fs.readFileSync(packageJsonPath, 'utf-8');
+    const packageJsonPath = path.join(process.cwd(), "package.json");
+    const packageJson = fs.readFileSync(packageJsonPath, "utf-8");
     const applicationVersion = JSON.parse(packageJson).version || 0;
 
-    const buildInfoPath = path.join(process.cwd(), 'build.info');
-    const buildInfo = fs.readFileSync(buildInfoPath, 'utf-8');
+    const buildInfoPath = path.join(process.cwd(), "build.info");
+    const buildInfo = fs.readFileSync(buildInfoPath, "utf-8");
 
     const branch = JSON.parse(buildInfo).branch || 0;
     const commitId = JSON.parse(buildInfo).commit || 0;
@@ -194,7 +194,7 @@ function main(options) {
             JSON.stringify(buildInfoResp),
             {
               headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
               },
             }
           );
@@ -205,7 +205,7 @@ function main(options) {
           // Re-try the registration after some time (maybe the server is not up yet)
           attempts += 1;
           if (attempts > defaultOptions.registration.maxAttempts) {
-            logger.error('Maximum number of attempts exceeded. Could not register Commit Log.');
+            logger.error("Maximum number of attempts exceeded. Could not register Commit Log.");
           } else {
             logger.info(
               `Failed Commit log registration (Attempt #${attempts}). Attempting again in ${defaultOptions.registration.attemptIntervalS} seconds.`
@@ -237,14 +237,14 @@ function main(options) {
 
           // Log the registration output
           const registeredService = response.data;
-          logger.debug('Service registration was successful', registeredService);
+          logger.debug("Service registration was successful", registeredService);
         } catch (e) {
           logger.error(e);
 
           // Re-try the registration after some time (maybe the server is not up yet)
           attempts += 1;
           if (attempts > defaultOptions.registration.maxAttempts) {
-            logger.error('Maximum number of attempts exceeded. Could not register UI extension.');
+            logger.error("Maximum number of attempts exceeded. Could not register UI extension.");
           } else {
             logger.info(
               `Failed registration (Attempt #${attempts}). Attempting again in ${defaultOptions.registration.attemptIntervalS} seconds.`
