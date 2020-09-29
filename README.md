@@ -87,11 +87,11 @@ async function main() {
 
 The object of a route is composed of the next attributes:
 
-| Field    | Description                                                                               |
-| -------- | ----------------------------------------------------------------------------------------- |
-| trigger  | Specifies the type of HTTP endpoint that will be registered. It has not default values.   |
-| Route    | Specify the endpoint route in order to trigger the callback function.                     |
-| Callback | The logic that will be executed when the HTTP endpoint is triggered. Handles the request. |
+| Field      | Description                                                                               |
+| ---------- | ----------------------------------------------------------------------------------------- |
+| `trigger`  | Specifies the type of HTTP endpoint that will be registered. It has not default values.   |
+| `route`    | Specify the endpoint route in order to trigger the callback function.                     |
+| `callback` | The logic that will be executed when the HTTP endpoint is triggered. Handles the request. |
 
 Each custom route added is just passed through to the express.js app() instance. Because of this, it has to abide to the rules of the express.js routes. To read more about this go to: https://expressjs.com/en/guide/routing.html
 
