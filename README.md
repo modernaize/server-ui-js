@@ -1,4 +1,4 @@
-## Environmnet variables
+## Environment variables
 
 | Environment Variable               | Description                                          | Default     |
 | ---------------------------------- | ---------------------------------------------------- | ----------- |
@@ -9,7 +9,7 @@
 | `REGISTRATION_ATTEMPTS`            | How many times server attempted to register a route  | `20`        |
 | `REGISTRATION_ATTEMPTS_INTERVAL_S` | How many times server will retry to register a route | `30`        |
 
-## Sample
+## Sample usage
 
 ```js
 async function main() {
@@ -25,7 +25,7 @@ async function main() {
 main().catch((error) => console.log('error main.catch', error));
 ```
 
-## Sample for registration of a route
+## Sample for registration of a UI extension
 
 ```js
 async function main() {
