@@ -21,6 +21,10 @@ const learnHost = process.env.LEARN_HOST || '127.0.0.1';
 const learnPort = process.env.LEARN_PORT || 5000;
 const learnURL = `${LEARN_PROTOCOL}://${learnHost}:${learnPort}`;
 
+const uiHost = process.env.UI_HOST || '127.0.0.1';
+const uiPort = process.env.UI_PORT || 3000;
+const uiURL = `${UI_PROTOCOL}://${uiHost}:${uiPort}`;
+
 const licenseHost = process.env.LICENSE_HOST || '127.0.0.1';
 const licensePort = process.env.LICENSE_PORT || 3001;
 const licenseURL = `${LICENSE_PROTOCOL}://${licenseHost}:${licensePort}`;
