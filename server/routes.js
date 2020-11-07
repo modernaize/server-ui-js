@@ -60,6 +60,35 @@ function getReadyCheck(req, res) {
   logger.info('Execute readiness check');
   let response;
 
+  if (defaultOptions.buildInfo.buildPayload) {
+    let attempts = 0;
+    let maxAttempts = process.env.STATUS_ATTEMPTS || 20;
+    let attemptIntervalS = process.env.STATUS_ATTEMPTS_INTERVAL_S || 30;
+
+    const getRemoteReadinessStatus = async () => {
+      try {
+        logger.info(`Getting remote readiness status...`);
+      } catch (e) {
+        logger.error(e);
+
+        // Re-try the status after some time (maybe the server is not up yet)
+        attempts += 1;
+        if (attempts > maxAttempts) {
+          logger.error('Maximum number of attempts exceeded. Could not get status.');
+        } else {
+          logger.info(
+            `Failed getting status (Attempt #${attempts}). Attempting again in ${attemptIntervalS} seconds.`
+          );
+
+          setTimeout(() => {
+            getRemoteReadinessStatus();
+          }, attemptIntervalS * 1_000);
+        }
+      }
+    };
+    getRemoteReadinessStatus();
+  }
+
   response = { message: 'System is ready' };
   return res.status(200).json(response).end();
 
