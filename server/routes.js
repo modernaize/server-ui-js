@@ -59,8 +59,9 @@ function getLiveCheck(req, res) {
 function getReadyCheck(req, res) {
   logger.info('Execute readiness check');
   let response;
+  let getRemoteStatus;
 
-  if (defaultOptions.buildInfo.buildPayload) {
+  if (getRemoteStatus) {
     let attempts = 0;
     let maxAttempts = process.env.STATUS_ATTEMPTS || 20;
     let attemptIntervalS = process.env.STATUS_ATTEMPTS_INTERVAL_S || 30;
@@ -89,7 +90,36 @@ function getReadyCheck(req, res) {
     getRemoteReadinessStatus();
   }
 
-  response = { message: 'System is ready' };
+  response = {
+    status: 'ready',
+    message: 'System is ready',
+    db: {
+      status: 'ready',
+      version: '2020.3.1',
+      message: 'System is ready'
+    },
+    license: {
+      status: 'ready',
+      version: '2020.3.1',
+      message: 'System is ready'
+    },
+    service: {
+      status: 'ready',
+      version: '2020.3.1',
+      message: 'System is ready'
+    },
+    learn: {
+      status: 'ready',
+      version: '2020.3.1',
+      message: 'System is ready'
+    },
+    autojoin: {
+      status: 'ready',
+      version: '2020.3.1',
+      message: 'System is ready'
+    }
+  };
+
   return res.status(200).json(response).end();
 
   // response = {message: 'System is not ready yet'};
