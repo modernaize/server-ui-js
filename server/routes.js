@@ -8,6 +8,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 
+const UI_PROTOCOL = process.env.UI_PROTOCOL || process.env.PROTOCOL || 'http';
 const SERVICE_PROTOCOL = process.env.SERVICE_PROTOCOL || process.env.PROTOCOL || 'http';
 const LEARN_PROTOCOL = process.env.LEARN_PROTOCOL || process.env.PROTOCOL || 'http';
 const AUTOJOIN_PROTOCOL = process.env.AUTOJOIN_PROTOCOL || process.env.PROTOCOL || 'http';
