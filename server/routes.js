@@ -115,7 +115,8 @@ function getPublic(req, res) {
  */
 function allApi(req, res) {
   logger.debug('Executing allApi');
-  apiProxy.web(req, res, { target: serviceURL });
+  // apiProxy.web(req, res, { target: serviceURL });
+  authenticateAndForward(req, res, serviceURL);
 }
 
 /**
