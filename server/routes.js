@@ -14,23 +14,23 @@ const LEARN_PROTOCOL = process.env.LEARN_PROTOCOL || process.env.PROTOCOL || 'ht
 const AUTOJOIN_PROTOCOL = process.env.AUTOJOIN_PROTOCOL || process.env.PROTOCOL || 'http';
 const LICENSE_PROTOCOL = process.env.LICENSE_PROTOCOL || process.env.PROTOCOL || 'http';
 
-const serviceHost = process.env.SERVICE_HOST || '127.0.0.1';
+const serviceHost = process.env.SERVICE_HOST;
 const servicePort = process.env.SERVICE_PORT || 8000;
 const serviceURL = `${SERVICE_PROTOCOL}://${serviceHost}:${servicePort}`;
 
-const learnHost = process.env.LEARN_HOST || '127.0.0.1';
+const learnHost = process.env.LEARN_HOST;
 const learnPort = process.env.LEARN_PORT || 5000;
 const learnURL = `${LEARN_PROTOCOL}://${learnHost}:${learnPort}`;
 
-const uiHost = process.env.UI_HOST || '127.0.0.1';
+const uiHost = process.env.UI_HOST;
 const uiPort = process.env.UI_PORT || 3000;
 const uiURL = `${UI_PROTOCOL}://${uiHost}:${uiPort}`;
 
-const licenseHost = process.env.LICENSE_HOST || '127.0.0.1';
+const licenseHost = process.env.LICENSE_HOST;
 const licensePort = process.env.LICENSE_PORT || 3001;
 const licenseURL = `${LICENSE_PROTOCOL}://${licenseHost}:${licensePort}`;
 
-const autojoinHost = process.env.AUTOJOIN_HOST || '127.0.0.1';
+const autojoinHost = process.env.AUTOJOIN_HOST;
 const autojoinPort = process.env.AUTOJOIN_PORT || 5002;
 const autojoinURL = `${AUTOJOIN_PROTOCOL}://${autojoinHost}:${autojoinPort}`;
 
@@ -292,7 +292,7 @@ routes.get('*', getAsterix);
  * @param {number} proxyHost  port number
  */
 async function authenticateAndForward(req, res, proxyHost) {
-  logger.debug('Executing authenticateAndForward');
+  logger.debug(`Executing authenticateAndForward ${proxyHost}`);
   const uri = `${serviceURL}/api/security/me`;
 
   const requestOptions = {
@@ -310,6 +310,9 @@ async function authenticateAndForward(req, res, proxyHost) {
     if (!error && response.statusCode === 200) {
       apiProxy.web(req, res, { target: proxyHost });
     }
+    apiProxy.on('error', (e) => {
+      logger.error(`not able to connect ${proxyHost}, hostname: ${e.hostname}, Code: ${e.code}, errno: ${e.errno}`);
+    });
   }
   request(requestOptions, callBack);
 }
