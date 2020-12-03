@@ -172,6 +172,7 @@ function main(options) {
     const buildDate = JSON.parse(buildInfo).buildDate || 0;
     const buildId = JSON.parse(buildInfo).buildId || 0;
     const commitLogId = JSON.parse(buildInfo).commitLogId || 0;
+    logger.debug(`Server-ui-js Running version : ${applicationVersion}`)
 
     // Set commit log
     if (defaultOptions.buildInfo.buildPayload) {
