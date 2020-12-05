@@ -43,7 +43,7 @@ const keyFilePath = path.join(__dirname, '.', 'keys', 'tls', 'key.pem');
 const certFilePath = path.join(__dirname, '.', 'keys', 'tls', 'cert.pem');
 
 const SERVICE_PROTOCOL = process.env.SERVICE_PROTOCOL || process.env.PROTOCOL || 'http';
-const SERVICE_HOST = process.env.SERVICE_HOST || '127.0.0.1';
+const SERVICE_HOST = process.env.SERVICE_HOST ;
 const SERVICE_PORT = process.env.SERVICE_PORT || 8000;
 const SERVICE_URL = `${SERVICE_PROTOCOL}://${SERVICE_HOST}:${SERVICE_PORT}`;
 
@@ -164,10 +164,6 @@ function main(options) {
     const packageJson = fs.readFileSync(packageJsonPath, 'utf-8');
     const applicationVersion = JSON.parse(packageJson).version || 0;
 
-    const respoPackageJsonPath = path.join(process.cwd(), '../package.json');
-    const respPackageJson = fs.readFileSync(respoPackageJsonPath, 'utf-8');
-    const respApplicationVersion = JSON.parse(respPackageJson).version || 0;
-
     const buildInfoPath = path.join(process.cwd(), 'build.info');
     const buildInfo = fs.readFileSync(buildInfoPath, 'utf-8');
 
@@ -177,7 +173,6 @@ function main(options) {
     const buildId = JSON.parse(buildInfo).buildId || 0;
     const commitLogId = JSON.parse(buildInfo).commitLogId || 0;
     logger.debug(`Server-ui-js Running version : ${applicationVersion}`);
-    logger.debug(`Server-ui-js Running version is : ${respApplicationVersion}`);
 
     // Set commit log
     if (defaultOptions.buildInfo.buildPayload) {

@@ -253,7 +253,7 @@ routes.get('*.js', (req, res, next) => {
   res.set('Content-Type', 'text/javascript');
   next();
 });
-
+cachesc c
 routes.all('/kpi/*', allKpi);
 
 routes.all('/api/*', allApi);
