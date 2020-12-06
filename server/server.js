@@ -160,6 +160,13 @@ function main(options) {
   }
 
   try {
+    npmModuleVersion=require('@modernaize/server-ui-js/package.json').version;
+    logger.info(`npm module server-ui-js version: ${npmModuleVersion}`)
+  } catch (e) {
+    logger.error(e);
+  }
+
+  try {
     const packageJsonPath = path.join(process.cwd(), 'package.json');
     const packageJson = fs.readFileSync(packageJsonPath, 'utf-8');
     const applicationVersion = JSON.parse(packageJson).version || 0;
@@ -172,7 +179,7 @@ function main(options) {
     const buildDate = JSON.parse(buildInfo).buildDate || 0;
     const buildId = JSON.parse(buildInfo).buildId || 0;
     const commitLogId = JSON.parse(buildInfo).commitLogId || 0;
-    logger.debug(`Server-ui-js Running version : ${applicationVersion}`);
+    logger.debug(`UI Container version : ${applicationVersion}`);
 
     // Set commit log
     if (defaultOptions.buildInfo.buildPayload) {
